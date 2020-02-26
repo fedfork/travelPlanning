@@ -9,6 +9,8 @@
 import UIKit
 import SwiftKeychainWrapper
 
+
+
 class SignInViewController: UIViewController {
     
     @IBOutlet weak var userNameField: UITextField!
@@ -33,16 +35,16 @@ class SignInViewController: UIViewController {
         
         view.addSubview(myActivityIndicator)
         
-        let myUrl = URL(string: "https://api.fake.rest/cfe9600d-bc5c-4945-aa30-f7387b71706e/authenticate")
+        let myUrl = URL(string: GlobalConstants.apiUrl + "/auth/login")
         
         var request = URLRequest(url:myUrl!)
         
         
         request.httpMethod = "POST"
-//        request.addValue ("application/json", forHTTPHeaderField: "content-type")
-//        request.addValue ("application/json", forHTTPHeaderField: "Accept")
+        request.addValue ("application/json", forHTTPHeaderField: "content-type")
+//      request.addValue ("application/json", forHTTPHeaderField: "Accept")
         
-        let postString = ["userName": userName!, "userPassword": password!] as [String: String]
+        let postString = ["Email": userName!, "Password": password!] as [String: String]
         
         do {
             
@@ -74,8 +76,10 @@ class SignInViewController: UIViewController {
                 
                 if let parseJson = json {
                     
+                    print (parseJson)
+                    
                     let accessToken = parseJson["token"] as? String
-                    let userId = parseJson["id"] as? String
+                    let userId = parseJson["userId"] as? String
                     guard let token = accessToken, let id = userId else {
                         print ("token is bad")
                         self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
@@ -95,6 +99,8 @@ class SignInViewController: UIViewController {
                         let homePage = strbrd.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
                         
                       
+                        print ("Access token : \(token) \(id)")
+                        
                         UIApplication.shared.windows.first?.rootViewController = homePage
                         UIApplication.shared.windows.first?.makeKeyAndVisible()
                         
@@ -112,7 +118,7 @@ class SignInViewController: UIViewController {
                     
                     
                     
-                    print ("Access token : \(token) \(id)")
+                    
                     
                     
                 } else {

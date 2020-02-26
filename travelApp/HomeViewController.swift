@@ -10,9 +10,14 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var StackView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        StackView.addArrangedSubview(TripView())
+        
+        
         // Do any additional setup after loading the view.
     }
     

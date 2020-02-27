@@ -19,8 +19,8 @@ class SignInViewController: UIViewController {
     
     @IBAction func signInButtonTapped(_ sender: Any) {
         
-        let userName = userNameField.text
-        let password = passwordField.text
+        var userName = userNameField.text
+        var password = passwordField.text
         
         if (userName?.isEmpty)! || (password?.isEmpty)! {
             print ("SignIn: One of the fields is missing")
@@ -36,48 +36,53 @@ class SignInViewController: UIViewController {
         view.addSubview(myActivityIndicator)
         
         let myUrl = URL(string: GlobalConstants.apiUrl + "/auth/login")
-        
+
         var request = URLRequest(url:myUrl!)
-        
-        
+
+
         request.httpMethod = "POST"
         request.addValue ("application/json", forHTTPHeaderField: "content-type")
 //      request.addValue ("application/json", forHTTPHeaderField: "Accept")
+
+        //данные темы
+        
+        userName = "why1799@gmail.com"
+        password = "12345"
         
         let postString = ["Email": userName!, "Password": password!] as [String: String]
-        
+
         do {
-            
+
             request.httpBody = try JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
-            
-            
+
+
         } catch let error {
-            
+
             print(error.localizedDescription)
             displayMessage(title: "Ошибка", message: "Не удалось сериализовать")
-            
+
             return
         }
-        
-        
-        
+
+
+
         let task = URLSession.shared.dataTask (with: request, completionHandler: { data, response, error in
-            
+
             self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-            
+
             if error != nil || data == nil {
                 self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
                 return
             }
-            
+
             do {
-                
+
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                
+
                 if let parseJson = json {
-                    
+
                     print (parseJson)
-                    
+
                     let accessToken = parseJson["token"] as? String
                     let userId = parseJson["userId"] as? String
                     guard let token = accessToken, let id = userId else {
@@ -85,56 +90,59 @@ class SignInViewController: UIViewController {
                         self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
                         return
                     }
-                    
+
                     if !KeychainWrapper.standard.set(token, forKey: "accessToken") ||
                         !KeychainWrapper.standard.set(id, forKey: "userId") {
                         print ("ubable to write to the keychain")
                         self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
                         return
                     }
-                    
+
                     DispatchQueue.main.async {
-                        
+
                         let strbrd = UIStoryboard(name: "Main", bundle: nil)
                         let homePage = strbrd.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
-                        
-                      
+
+
                         print ("Access token : \(token) \(id)")
-                        
+
                         UIApplication.shared.windows.first?.rootViewController = homePage
                         UIApplication.shared.windows.first?.makeKeyAndVisible()
-                        
-                        
-                        
-//                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                        appDelegate.window!.rootViewController =  homePage
-//
-//
-                        
-//                        self.showDetailViewController(homePage, sender: self)
-//                      self.present(homePage, animated: true, completion: nil)
-                        
+
+
+
+
+
                     }
-                    
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
+
                 } else {
                     self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
                 }
-                
+
             } catch {
-                
+
                 print ("Not able to serialize token")
                 self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-                
+
             }
-            
+
         })
-        
+
         task.resume()
+        
+//
+//        let strbrd = UIStoryboard(name: "Main", bundle: nil)
+//        let homePage = strbrd.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+//
+//        UIApplication.shared.windows.first?.rootViewController = homePage
+//        UIApplication.shared.windows.first?.makeKeyAndVisible()
+//
+    
         
     }
     

@@ -30,8 +30,10 @@ class TripView: UIView {
     private func commonInit(){
         Bundle.main.loadNibNamed("TripView", owner: self, options: nil)
         addSubview(contentView)
+        self.bounds = CGRect(x: 0, y: 0, width: 200, height: 100)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
     }
 
     

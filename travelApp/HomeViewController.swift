@@ -11,124 +11,25 @@ import SwiftKeychainWrapper
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var StackView: UIStackView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet var MainView: UIView!
+    
+    var tripCounterBefore = 0
+    var tripCounterAfter = 0 {
+        willSet {
+            if tripCounterBefore == newValue{
+                showTrips()
+            }
+        }
+    }
+    
+    var trips : [Trip]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let tripView = TripView()//TripView(frame: CGRect(x: 10, y: 10, width: 100, height: 100))
-//
-//        tripView.isHidden = false
-//        MainView.addSubview(tripView)
-        
-        let tok = KeychainWrapper.standard.string(forKey: "accessToken")
-        guard let token = tok else {
-            print ("ubable to read from the keychain")
-            self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-            return
-        }
-        
-        let myUrl = URL(string: GlobalConstants.apiUrl + "/trip/getall?token="+token)
-        
-            
-
-                var request = URLRequest(url:myUrl!)
-
-                print ("myURL=\(myUrl!)")
-        
-                request.httpMethod = "GET"
-                request.addValue ("application/json", forHTTPHeaderField: "content-type")
-        //      request.addValue ("application/json", forHTTPHeaderField: "Accept")
-                
-            
-
-
-                let task = URLSession.shared.dataTask (with: request, completionHandler: { data, response, error in
-
-//                    self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-
-                    if error != nil || data == nil {
-                        self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-                        return
-                    }
-
-                    do {
-
-                        let dataStr = String(bytes: data!, encoding: .utf8)
-                        print ("received data=\(dataStr!)")
-                        
-                        
-//                        let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as
-                        do {
-                            let tripMod = try JSONDecoder().decode([String].self, from: data!)
-                            print (tripMod)
-                            
-                        } catch {
-                            print (error)
-                        }
-                        
-                        
-                        if false {
-
-//                            print (tripModel)
-                            
-                            
-//
-//                            let accessToken = parseJson["token"] as? String
-//                            let userId = parseJson["userId"] as? String
-//                            guard let token = accessToken, let id = userId else {
-//                                print ("token is bad")
-//                                self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-//                                return
-//                            }
-//
-//                            if !KeychainWrapper.standard.set(token, forKey: "accessToken") ||
-//                                !KeychainWrapper.standard.set(id, forKey: "userId") {
-//                                print ("ubable to write to the keychain")
-//                                self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-//                                return
-//                            }
-//
-//                            DispatchQueue.main.async {
-//
-//                                let strbrd = UIStoryboard(name: "Main", bundle: nil)
-//                                let homePage = strbrd.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
-//
-//
-//                                print ("Access token : \(token) \(id)")
-//
-//                                UIApplication.shared.windows.first?.rootViewController = homePage
-//                                UIApplication.shared.windows.first?.makeKeyAndVisible()
-//
-//
-//
-
-
-//                            }
-
-
-
-
-
-
-                        } else {
-                            self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-                        }
-
-                    } catch {
-
-                        print ("Not able to serialize token")
-                        self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-
-                    }
-                })
-        
-        
-        task.resume()
-        StackView.addArrangedSubview(TripView())
-        
-        
+        getTrips()
         // Do any additional setup after loading the view.
         
     }
@@ -158,15 +59,118 @@ class HomeViewController: UIViewController {
                 }
             }
             
-    struct TripsModel: Decodable {
-        let tripArray: [String]
+    func getTrips (){
+        
+        let tok = KeychainWrapper.standard.string(forKey: "accessToken")
+                guard let token = tok else {
+                    print ("ubable to read from the keychain")
+                    self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
+                    return
+                }
+                
+                //created url with token
+                let myUrl = URL(string: GlobalConstants.apiUrl + "/trip/getall?token="+token)
 
-        init(from decoder: Decoder) throws {
-            var container = try decoder.unkeyedContainer()
-            tripArray = try container.decode([String].self)
-        }
+                        var request = URLRequest(url:myUrl!)
+                
+                        request.httpMethod = "GET"
+                        request.addValue ("application/json", forHTTPHeaderField: "content-type")
+                        
+                    
+
+                        //performing request to get trips
+                        let task = URLSession.shared.dataTask (with: request, completionHandler: { data, response, error in
+
+        //                    self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+
+                            if error != nil || data == nil {
+                                self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
+                                return
+                            }
+
+                            
+
+                                //printing obtained string: for debugging
+                                let dataStr = String(bytes: data!, encoding: .utf8)
+                                print ("received data=\(dataStr!)")
+                                
+                                
+        //                        let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as
+                                
+                                let tripIds = try? JSONDecoder().decode([String].self, from: data!)
+                                
+                                guard let tripIdentifiers = tripIds
+                                    else {
+                                        print ("unable to parse trip identifiers")
+                                        return
+                                }
+                                
+                                //tripcountersset
+                            
+                            self.tripCounterBefore = tripIdentifiers.count
+                            self.tripCounterAfter = 0
+                            
+                            //retrieving trips by their identifiers
+                                for tripId in tripIdentifiers {
+                                    
+                                    let myUrl1 = URL(string: GlobalConstants.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
+                                    print ("url for trip read request = " + GlobalConstants.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
+                                    
+                                    var tripReadRequest = URLRequest(url: myUrl1! )
+                                    tripReadRequest.httpMethod = "GET"
+                                    tripReadRequest.addValue ("application/json", forHTTPHeaderField: "content-type")
+                                    
+                                    let task2 = URLSession.shared.dataTask (with: tripReadRequest, completionHandler: { data2, response, error in
+                                        
+                                        if error != nil || data == nil {
+                                            print ("unable to retrieve trip " + tripId)
+                                            return
+                                        }
+                                        
+                                        let tripJs = try? JSONSerialization.jsonObject(with: data2!, options: .mutableContainers) as? NSDictionary
+                                        
+                                        guard let tripJson = tripJs else { print ("unable to parse trip's json of trip " + tripId); return}
+                                        
+                                        print (tripJson)
+                                        
+                                        let trip = Trip(Id: tripJson["id"] as! String, Name: tripJson["name"] as! String, TextField: tripJson["textField"] as! String)
+                                        if self.trips == nil {
+                                            self.trips = [Trip]()
+                                        }
+                                        self.trips!.append (trip)
+                                        self.tripCounterAfter += 1
+                                        
+                                    })
+                                    task2.resume()
+                                }
+                            })
+                                
+                task.resume()
     }
 
+    
+    func showTrips (){
+        DispatchQueue.main.sync {
+            guard let tripList = trips else {print ("showtrips: trip list is empty"); return}
+            
+            for trip in tripList {
+                var tripView = TripView()
+                //adding shadow
+                tripView.layer.shadowColor = UIColor.black.cgColor
+                tripView.layer.shadowOpacity = 1
+                tripView.layer.shadowOffset = .zero
+                tripView.layer.shadowRadius = 10
+                tripView.layer.shadowPath = UIBezierPath(rect: tripView.bounds).cgPath
+                
+                
+                
+                tripView.tripName.text? = trip.Name
+                tripView.Description.text? = trip.TextField
+               
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -177,4 +181,21 @@ class HomeViewController: UIViewController {
     }
     */
 
+}
+
+extension UIStackView {
+    
+    func removeAllArrangedSubviews() {
+        
+        let removedSubviews = arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in
+            self.removeArrangedSubview(subview)
+            return allSubviews + [subview]
+        }
+        
+        // Deactivate all constraints
+        NSLayoutConstraint.deactivate(removedSubviews.flatMap({ $0.constraints }))
+        
+        // Remove the views from self
+        removedSubviews.forEach({ $0.removeFromSuperview() })
+    }
 }

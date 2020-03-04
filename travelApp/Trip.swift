@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class Trip {
     internal init(Id: String, Name: String, TextField: String) {

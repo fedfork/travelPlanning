@@ -17,6 +17,9 @@ class AddTripViewController: UIViewController {
     
     @IBAction func createPressed(_ sender: Any) {
         if let name = nameField.text, name != "" {
+            if !checkPickers() { // if dates are not correct
+                return
+            }
             createTrip(name: name)
         } else {
             //TODO: display EM - string is empty
@@ -40,14 +43,14 @@ class AddTripViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func createTrip(name: String) {
+    func createTrip(name: String, date1: Int64, date2: Int64) {
         let tok = KeychainWrapper.standard.string(forKey: "accessToken")
             guard let token = tok else {
                 print ("ubable to read from the keychain")
 //                    self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
                 return
         }
-                
+        
         //created url with token
         let myUrl = URL(string: GlobalConstants.apiUrl + "/trip/upsert?token="+token)
 
@@ -56,6 +59,10 @@ class AddTripViewController: UIViewController {
         var newTripJson:JSON = [:]
         
         newTripJson["Name"] = JSON(name)
+        
+        
+        
+        
         //newTripJson["FromDate"] = JSON("123532332")
         //newTripJson["ToDate"] = JSON("123538332")
         
@@ -95,6 +102,12 @@ class AddTripViewController: UIViewController {
     func dismissVC(){
         DispatchQueue.main.sync {
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func checkPickers () -> Bool {
+        if DatePickerTo.date < datePickerFrom.date {
+            print ("checkPickers()::trip ends before it starts")
         }
     }
     /*

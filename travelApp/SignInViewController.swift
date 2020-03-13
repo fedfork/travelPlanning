@@ -108,11 +108,6 @@ class SignInViewController: UIViewController {
 
                         UIApplication.shared.windows.first?.rootViewController = homePage
                         UIApplication.shared.windows.first?.makeKeyAndVisible()
-
-
-
-
-
                     }
 
 

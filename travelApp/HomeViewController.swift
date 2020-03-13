@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import SwiftyJSON
+
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -33,13 +35,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var trips : [Trip]?
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         guard let itemsCount = trips?.count else { return 0 }
         print ("itemsInCell=\(itemsCount)")
         return itemsCount
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(40)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -50,18 +53,43 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         // initialise cell with data from trips
         guard let trip = trips?[indexPath.item] else { return cell}
         cell.update(for: trip)
+        
+//        cell.contentView.layer.cornerRadius = 2.0
+//        cell.contentView.layer.borderWidth = 1.0
+//        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+//        cell.contentView.layer.masksToBounds = true;
+
+        
+        
+        cell.setupDesign()
         return cell
         
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //going to nev VC
+        
+//        let navVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navVC") as! UINavigationController
+        let tripVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tripVC") as! TripViewController
+        tripVC.trip = trips![indexPath.item]
+        tripVC.modalPresentationStyle = .fullScreen
+        self.present(tripVC, animated: true, completion: nil)
+        
+        return
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //gesture recogniser for collectionview
         
         collectionView.delegate = self
         collectionView.dataSource = self
         getTrips()
+        
         // Do any additional setup after loading the view.
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gesture:)))
+        collectionView.addGestureRecognizer(longPressGesture)
         
     }
     
@@ -69,7 +97,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewWillAppear(animated)
         getTrips()
         collectionView.reloadData()
-        print ("VIEWWILLAPPEARCALLED")
     }
 
     
@@ -169,13 +196,31 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                             return
                         }
                         
-                        let tripJs = try? JSONSerialization.jsonObject(with: data2!, options: .mutableContainers) as? NSDictionary
+//                        let tripJs = try? JSONSerialization.jsonObject(with: data2!, options: .mutableContainers) as? NSDictionary
                         
+                        let tripJs = try? JSON(data: data2!)
                         guard let tripJson = tripJs else { print ("unable to parse trip's json of trip " + tripId); return}
                         
                         print (tripJson)
                         
-                        let trip = Trip(Id: tripJson["id"] as? String ?? "", Name: tripJson["name"] as? String ?? "", TextField: tripJson["textField"] as? String ?? "")
+                        //parsing places
+                        var placeIds: [String] = []
+//                        print ("TYPE= \(type(of: tripJson["placeIds"]))")
+                        
+//                        let tripIds = try? JSONDecoder().decode([String].self, from: tripJson)
+                        for (num,placeId):(String, JSON) in tripJson["placeIds"] {
+                            guard let placeId = placeId.string else {continue}
+                            placeIds.append(placeId)
+                        }
+                        
+                        print (placeIds)
+                        
+                        let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
+                        
+                        
+                        //Added
+                        trip.getDateStringFromTo()
+                        
                         if self.trips == nil {
                             self.trips = [Trip]()
                         }
@@ -190,25 +235,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         task.resume()
     }
 
-    
     func showTrips (){
         DispatchQueue.main.sync {
-//            guard let tripList = trips else {print ("showtrips: trip list is empty"); return}
-            
-//            for trip in tripList {
-//                var tripView = TripView()
-//                //adding shadow
-//                tripView.layer.shadowColor = UIColor.black.cgColor
-//                tripView.layer.shadowOpacity = 1
-//                tripView.layer.shadowOffset = .zero
-//                tripView.layer.shadowRadius = 10
-//                tripView.layer.shadowPath = UIBezierPath(rect: tripView.bounds).cgPath
-//
-//
-//
-//                tripView.tripName.text? = trip.Name
-//                tripView.Description.text? = trip.TextField
-//
             collectionView.reloadData()
             }
         }
@@ -222,7 +250,76 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         return CGSize(width: yourWidth, height: yourHeight)
     }
     
+    @objc func handleLongPress(gesture : UILongPressGestureRecognizer!) {
+        if gesture.state != .ended {
+            return
+        }
+
+        let p = gesture.location(in: self.collectionView)
+
+        if let indexPath = self.collectionView.indexPathForItem(at: p) {
+            // get the cell at indexPath (the one you long pressed)
+            let cell = self.collectionView.cellForItem(at: indexPath)
+            // we got current trip, now display q/alert about deleting
+            
+            print ("tapped on trip \(trips![indexPath.item].Name)")
+            
+            let choiceAlert = UIAlertController(title: " Выберите действие", message: "Поездка \(trips![indexPath.item].Name)", preferredStyle: .actionSheet)
+            choiceAlert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: {action in
+                self.deleteTrip(tripId: self.trips![indexPath.item].Id)
+            } ) )
+            self.present(choiceAlert, animated: true, completion: nil)
+            
+        } else {
+            print("couldn't find index path")
+        }
+    }
     
+    func deleteTrip (tripId: String) {
+        let tok = KeychainWrapper.standard.string(forKey: "accessToken")
+        guard let token = tok else {
+            print ("ubable to read from the keychain")
+            self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
+            return
+        }
+        
+//created url with token
+        let myUrl = URL(string: GlobalConstants.apiUrl + "/trip/delete?token="+token+"&id="+tripId)
+        print ("URL=\(GlobalConstants.apiUrl + "/trip/delete?token="+token+"&id="+tripId)")
+        var request = URLRequest(url:myUrl!)
+        
+        request.httpMethod = "DELETE"
+        request.addValue ("application/json", forHTTPHeaderField: "content-type")
+        
+        //performing request to get trips
+        let task = URLSession.shared.dataTask (with: request, completionHandler: { data, response, error in
+
+//                    self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+
+            if error != nil || data == nil {
+                self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
+                return
+            }
+            print(data!)
+            do {
+                let json = try JSON (data: data!)
+                print ("deletion JSON: \(json)")
+            } catch {
+                print ("error=\(error)")
+            }
+            
+//            let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+//            guard let json1 = json else { print ("unsuccessfull"); return }
+//            print (json1)
+//            guard let json = jso else { print ("couldn't parse json from server. nothing done."); return }
+            
+            
+            self.getTrips()
+        
+        })
+        task.resume()
+        
+    }
     /*
     // MARK: - Navigation
 
@@ -235,19 +332,3 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
 }
 
-extension UIStackView {
-    
-    func removeAllArrangedSubviews() {
-        
-        let removedSubviews = arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in
-            self.removeArrangedSubview(subview)
-            return allSubviews + [subview]
-        }
-        
-        // Deactivate all constraints
-        NSLayoutConstraint.deactivate(removedSubviews.flatMap({ $0.constraints }))
-        
-        // Remove the views from self
-        removedSubviews.forEach({ $0.removeFromSuperview() })
-    }
-}

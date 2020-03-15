@@ -18,18 +18,28 @@ class AddTripViewController: UIViewController {
     @IBAction func createPressed(_ sender: Any) {
         if let name = nameField.text, name != "" {
             if !checkPickers() { // if dates are not correct
+                //TODO: display EM - string is empty
+                print ("Finish date is later than start date")
                 return
             }
-            createTrip(name: name)
+//            if !(datePickerFrom.isSelected) || !(DatePickerTo.isSelected) {
+//                print ("Pickers are not selected")
+//                return
+//            }
+            createTrip (name: name, date1: datePickerFrom!.date.ticks, date2: DatePickerTo!.date.ticks)
         } else {
             //TODO: display EM - string is empty
             print ("Tripname string is empty")
             return
         }
-        
-        
     }
 
+    @IBAction func dateFromChanged(_ sender: Any) {
+        // set second picker minimum date as current
+//        guard let picker
+        DatePickerTo.minimumDate = datePickerFrom!.date
+        
+    }
     @IBOutlet weak var datePickerFrom: UIDatePicker!
     
     @IBOutlet weak var DatePickerTo: UIDatePicker!
@@ -40,10 +50,13 @@ class AddTripViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        // setting pickers to offer date only from today
+        datePickerFrom.minimumDate = Date()
+        DatePickerTo.minimumDate = Date()
+        
     }
     
-    func createTrip(name: String, date1: Int64, date2: Int64) {
+    func createTrip(name: String, date1: UInt64, date2: UInt64) {
         let tok = KeychainWrapper.standard.string(forKey: "accessToken")
             guard let token = tok else {
                 print ("ubable to read from the keychain")
@@ -59,9 +72,8 @@ class AddTripViewController: UIViewController {
         var newTripJson:JSON = [:]
         
         newTripJson["Name"] = JSON(name)
-        
-        
-        
+        newTripJson["fromDate"] = JSON (date1)
+        newTripJson["toDate"] = JSON (date2)
         
         //newTripJson["FromDate"] = JSON("123532332")
         //newTripJson["ToDate"] = JSON("123538332")
@@ -108,8 +120,13 @@ class AddTripViewController: UIViewController {
     func checkPickers () -> Bool {
         if DatePickerTo.date < datePickerFrom.date {
             print ("checkPickers()::trip ends before it starts")
+            return false
+        } else {
+            return true
         }
     }
+    
+    
     /*
     // MARK: - Navigation
 

@@ -70,7 +70,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //going to nev VC
         
-//        let navVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navVC") as! UINavigationController
+//        let navVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navVC")  as! UINavigationController
+        
         let tripVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tripVC") as! TripViewController
         tripVC.trip = trips![indexPath.item]
         tripVC.modalPresentationStyle = .fullScreen
@@ -164,7 +165,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 print ("received data=\(dataStr!)")
                 
                 
-//                        let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as
+//              let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as
                 
                 let tripIds = try? JSONDecoder().decode([String].self, from: data!)
                 
@@ -221,6 +222,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                         //Added
                         trip.getDateStringFromTo()
                         
+    
                         if self.trips == nil {
                             self.trips = [Trip]()
                         }
@@ -238,15 +240,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func showTrips (){
         DispatchQueue.main.sync {
             collectionView.reloadData()
-            }
         }
+    }
     
     
     //needed to set concrete size of cell depending on stackview cell size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let yourWidth = collectionView.bounds.width - 20
         let yourHeight = yourWidth
-
+        
         return CGSize(width: yourWidth, height: yourHeight)
     }
     

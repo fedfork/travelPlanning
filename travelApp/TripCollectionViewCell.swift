@@ -48,7 +48,7 @@ class TripCollectionViewCell: UICollectionViewCell {
         dateFromLalel.text = trip.getDateStringFromTo()
     }
     
-    func initiateZeroes(){
+    func initiateZeroes() {
         tripNameLabel.text = "0"
         dateFromLalel.text = "0"
         

@@ -10,18 +10,28 @@ import UIKit
 import SwiftKeychainWrapper
 import SwiftyJSON
 
+
+
 class TripViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-
-    var trip: Trip?
-    
-    var places: [Place]?{
-        didSet {
-            if let pl = places, pl.count>0{
-                showCvData()
-            }
+    //describes one cell - size, description and counter
+    struct cellParameter {
+        var name : String
+        var widthMultiplier: CGFloat
+        var counter: Int
+        init(name: String, widthMult: CGFloat, counter: Int){
+            self.name = name
+            self.widthMultiplier = widthMult
+            self.counter = counter
         }
     }
+
+    
+    var cellParameters: [cellParameter] = [cellParameter]()
+    
+    var trip: Trip?
+    
+    var places: [Place]?
     
     @IBAction func returnClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -38,110 +48,127 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        loadPlaces()
+        // configure collectionView layout
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+       
+        layout.minimumInteritemSpacing = 10.0
+        layout.minimumLineSpacing = 100.0
+        
+        //add gesture recognisers
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOnCell(gesture:)))
+//        collectionView.addGestureRecognizer(tapGesture)
+        
+        identifyCellParameters()
+        
         // Do any additional setup after loading the view.
     }
     
+    //configuring collectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        guard let itemsCount = places?.count else {return 0}
-        
-        return itemsCount
+        return cellParameters.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlaceCell", for: indexPath as IndexPath) as! PlaceCollectionViewCell
-        
-        guard let place = places?[indexPath.item] else { return cell }
-        
-        cell.update(for: place)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath as IndexPath) as! MenuCollectionViewCell
+    
+        cell.update(for: cellParameters[indexPath.item].name)
+        cell.setupDesign()
         return cell
-        
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if (kind == UICollectionView.elementKindSectionHeader) {
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CartHeaderCollectionReusableView", for: indexPath)
-            // Customize headerView here
-            return headerView
-        }
-        fatalError()
-    }
-    
-    
-    func loadPlaces () {
-        let tok = KeychainWrapper.standard.string(forKey: "accessToken")
-        guard let token = tok else {
-            print ("ubable to read from the keychain")
-//            self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-            return
-        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // if no such element, do nothing
+        if indexPath.item >= cellParameters.capacity { return }
         
-        guard let currentTrip = trip else {print("no trip"); return}
-            
-        places = [Place]()
+        let selectedCellHeader = cellParameters[indexPath.item].name
         
-        for placeId in currentTrip.PlaceIds
-        {
-            //created url with token
-            let myUrl = URL(string: GlobalConstants.apiUrl + "/place/read?token="+token+"&id="+placeId)
-
-            var request = URLRequest(url:myUrl!)
-
-            request.httpMethod = "GET"
-            request.addValue ("application/json", forHTTPHeaderField: "content-type")
+        switch selectedCellHeader {
+            case "Места":
+                //instantiate and show places VC
+                let placesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "placesVC") as! ShowAllPlacesViewController
+                guard let currentTrip = trip else { print ("no current trip"); return }
+                placesVC.trip = currentTrip
+                
+                
+                placesVC.modalPresentationStyle = .fullScreen
+                self.present(placesVC, animated: true, completion: nil)
             
-            //performing request to get place
-            let task = URLSession.shared.dataTask (with: request, completionHandler: { data, response, error in
-
-    //                    self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-
-                if error != nil || data == nil {
-    //                self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-                    return
-                }
-
+                return
                 
-
-                    //printing obtained string: for debugging
-                    let dataStr = String(bytes: data!, encoding: .utf8)
-                    print ("received data=\(dataStr!)")
-                    
-                    
-    //                        let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as
-                    
-                    let place = try? JSON(data: data!)
-                    
-                    guard let placeJSON = place
-                        else {
-                            print ("unable to parse trip identifiers")
-                            return
-                    }
-                var newPlace = Place(name: placeJSON["name"].string ?? "", adress: placeJSON["adress"].string ?? "", Description: placeJSON["description"].string ?? "", id: placeJSON["id"].string ?? "")
-                
-                
-                self.places!.append (newPlace)
-                self.showCvData()
-            })
-            task.resume()
-    }
-}
-
-    func showCvData (){
-        DispatchQueue.main.sync {
-            collectionView.reloadData()
-            
+            default:
+                return
         }
+            
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let yourWidth = collectionView.bounds.width - 20
-        let yourHeight = yourWidth/3 
-
+        let yourWidth = collectionView.bounds.width * cellParameters[indexPath.item].widthMultiplier
+        let yourHeight = CGFloat(100.0)
+        
         return CGSize(width: yourWidth, height: yourHeight)
     }
+    
+
+    //finished configuring colletionView
+    
+    //configuring gesture handlers
+    
+//    @objc func handleTapOnCell(gesture : UITapGestureRecognizer!) {
+//       if gesture.state != .ended {
+//           return
+//       }
+//       let p = gesture.location(in: self.collectionView)
+//
+//       if let indexPath = self.collectionView.indexPathForItem(at: p) {
+//           // get the cell at indexPath (the one you long pressed)
+//           let cell = self.collectionView.cellForItem(at: indexPath)
+//           // we got current trip, now display q/alert about deleting
+//
+//           print ("tapped on trip \(cellParameters[indexPath.item].name)")
+//
+////           let choiceAlert = UIAlertController(title: " Выберите действие", message: "Поездка \(trips![indexPath.item].Name)", preferredStyle: .actionSheet)
+////           choiceAlert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: {action in
+////               self.deleteTrip(tripId: self.trips![indexPath.item].Id)
+////           } ) )
+////           self.present(choiceAlert, animated: true, completion: nil)
+//
+//       } else {
+//           print("couldn't find index path")
+//       }
+//    }
+    
+    
+        
+
+
+    func identifyCellParameters() {
+        
+        var parameter = cellParameter(name: "Места", widthMult: 0.62, counter: places?.count ?? 0)
+        cellParameters.append(parameter)
+        
+        parameter = cellParameter(name: "Покупки", widthMult: 0.32, counter: places?.count ?? 0)
+        cellParameters.append(parameter)
+        
+        
+        showCvData()
+    }
+    
+    
+    func showCvData (){
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+}
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let yourWidth = collectionView.bounds.width - 20
+//        let yourHeight = yourWidth/3
+//
+//        return CGSize(width: yourWidth, height: yourHeight)
+//    }
     
     
     /*
@@ -154,4 +181,5 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     */
 
-}
+    
+

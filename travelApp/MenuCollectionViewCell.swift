@@ -12,8 +12,11 @@ class MenuCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var placeName: UILabel!
     
-    func update(for name: String) {
+    @IBOutlet var counterLabel: UILabel!
+    
+    func update(for name: String, counter: Int) {
         placeName.text = name
+        counterLabel.text = "\(counter)"
     }
     
     func setupDesign()  {

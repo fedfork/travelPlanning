@@ -73,7 +73,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //        let navVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navVC")  as! UINavigationController
         
         let tripVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tripVC") as! TripViewController
-        tripVC.trip = trips![indexPath.item]
+        tripVC.tripId = trips![indexPath.item].Id
         tripVC.modalPresentationStyle = .fullScreen
         self.present(tripVC, animated: true, completion: nil)
         
@@ -103,7 +103,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func displayMessage (title: String, message: String){
                 DispatchQueue.main.async {
-                
                     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
                     
                     self.present (alert, animated: true, completion: nil)
@@ -114,7 +113,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                     let timer2 = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
                         alert.dismiss(animated: true, completion: nil)
                     }
-                    
                 }
             }
             
@@ -130,7 +128,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         let tok = KeychainWrapper.standard.string(forKey: "accessToken")
                 guard let token = tok else {
                     print ("ubable to read from the keychain")
-                    self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
+                    // display message
                     return
                 }
         
@@ -209,18 +207,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //                        print ("TYPE= \(type(of: tripJson["placeIds"]))")
                         
 //                        let tripIds = try? JSONDecoder().decode([String].self, from: tripJson)
-                        for (num,placeId):(String, JSON) in tripJson["placeIds"] {
-                            guard let placeId = placeId.string else {continue}
-                            placeIds.append(placeId)
-                        }
+//                        for (num,placeId):(String, JSON) in tripJson["placeIds"] {
+//                            guard let placeId = placeId.string else {continue}
+//                            placeIds.append(placeId)
+//                        }
+//
+//                        print (placeIds)
                         
-                        print (placeIds)
-                        
-                        let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
+                        let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: [String](), timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
                         
                         
                         //Added
-                        trip.getDateStringFromTo()
+//                        trip.getDateStringFromTo()
                         
     
                         if self.trips == nil {

@@ -30,5 +30,6 @@ class PlaceTableViewCell: UITableViewCell {
         nameLabel.text = name
         adressLabel.text = address
     }
+    
 
 }

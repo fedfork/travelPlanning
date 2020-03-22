@@ -9,15 +9,18 @@
 import Foundation
 
 class Place {
-    internal init(name: String, adress: String, Description: String, id: String) {
+    internal init(name: String, adress: String, Description: String, id: String, checked: Bool, userId: String) {
+        self.checked = checked
         self.name = name
         self.adress = adress
-        self.Description = Description
+        self.description = Description
         self.id = id
+        self.userId = userId
     }
-    
     var name: String
     var adress: String
-    var Description: String
+    var description: String
     var id: String
+    var checked: Bool
+    var userId: String
 }

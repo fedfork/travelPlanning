@@ -29,6 +29,7 @@ class GoodsTableViewCell: UITableViewCell {
     func setUnchecked(){
         radioButton.setImage(UIImage(named:"not-pressed-rb.png"), for: .normal)
     }
+    
     func setChecked(){
         radioButton.setImage(UIImage(named:"pressed-rb.png"), for: .normal)
     }

@@ -71,6 +71,10 @@ class ShowAllPlacesViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // instantiate and present places view controller in show mode
+        if indexPath.item >= places.count {
+            print ("no such place")
+            return
+        }
         let place = places[indexPath.item]
         presentPlaceVC(inMode: .show, place: place)
     }

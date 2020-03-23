@@ -75,7 +75,6 @@ class AddPlaceViewController: UIViewController, UITextViewDelegate {
             case .show:
                 initiateToShow()
         }
-        
     }
     
     func initiateToShow() {
@@ -163,7 +162,12 @@ class AddPlaceViewController: UIViewController, UITextViewDelegate {
             return
         }
         
-        var place = Place(name: nameField.text ?? "", adress: adressField.text ?? "", Description: descTextView.text ?? "", id: "", checked: false, userId: "")
+        var descrip = ""
+        if let desc = descTextView.text, desc != "Описание..." {
+            descrip = desc
+        }
+        
+        var place = Place(name: nameField.text ?? "", adress: adressField.text ?? "", Description: descrip, id: "", checked: false, userId: "")
         
         guard let tripId = tripId else { print ("bad trip"); return }
         
@@ -196,6 +200,7 @@ class AddPlaceViewController: UIViewController, UITextViewDelegate {
        // newPlaceJson["userId"] = JSON(place.userId)
         newPlaceJson["tripId"] = JSON(tripId)
         newPlaceJson["description"] = JSON(place.description)
+        
         
         
         print (newPlaceJson)

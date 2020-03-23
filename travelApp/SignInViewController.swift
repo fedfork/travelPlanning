@@ -46,9 +46,9 @@ class SignInViewController: UIViewController {
 
         //данные темы
         
-        userName = "why1799@gmail.com"
-        password = "12345"
-        
+//        userName = "why1799@gmail.com"
+//        password = "12345"
+//
         let postString = ["Email": userName!, "Password": password!] as [String: String]
 
         do {

@@ -178,6 +178,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.tripCounterBefore = tripIdentifiers.count
             self.tripCounterAfter = 0
             
+            print ("tripIdentifiers")
+            print(tripIdentifiers)
+            
+            self.trips = nil
+            
             //retrieving trips by their identifiers
                 for tripId in tripIdentifiers {
                     
@@ -268,6 +273,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             choiceAlert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: {action in
                 self.deleteTrip(tripId: self.trips![indexPath.item].Id)
             } ) )
+            choiceAlert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler: {action in
+                self.dismiss(animated: true, completion: nil)
+            }))
             self.present(choiceAlert, animated: true, completion: nil)
             
         } else {

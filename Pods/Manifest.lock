@@ -1,0 +1,21 @@
+PODS:
+  - SwiftKeychainWrapper (3.4.0)
+  - SwiftyJSON (4.2.0)
+
+DEPENDENCIES:
+  - SwiftKeychainWrapper (~> 3.4)
+  - SwiftyJSON (~> 4.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - SwiftyJSON
+  trunk:
+    - SwiftKeychainWrapper
+
+SPEC CHECKSUMS:
+  SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+
+PODFILE CHECKSUM: 4d0a5e52286524ba96547b40d42e9ea12d9b12a2
+
+COCOAPODS: 1.8.4

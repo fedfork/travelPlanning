@@ -79,6 +79,7 @@ class AddGoodViewController: UIViewController {
             
             var errorFlag = false
             
+        // hz
             let task = URLSession.shared.dataTask (with: request, completionHandler: { data, response, error in
 
     //                    self.removeActivityIndicator(activityIndicator: myActivityIndicator)

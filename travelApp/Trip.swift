@@ -10,12 +10,13 @@ import Foundation
 import SwiftyJSON
 
 class Trip {
-    internal init(Id: String, Name: String, TextField: String, PlaceIds: [String], goodIds: [String], timeFrom: Int64, timeTo: Int64) {
+    internal init(Id: String, Name: String, TextField: String, PlaceIds: [String], goodIds: [String], goalIds: [String], timeFrom: Int64, timeTo: Int64) {
         self.Id = Id
         self.Name = Name
         self.TextField = TextField
         self.PlaceIds = PlaceIds
         self.goodIds = goodIds
+        self.goalIds = goalIds
         if (timeFrom > 0){
             self.dateFrom = Date(ticks: timeFrom)
         }
@@ -30,6 +31,7 @@ class Trip {
     var dateFrom: Date?
     var dateTo: Date?
     var goodIds: [String]
+    var goalIds: [String]
     
     func getDateStringFromTo() -> String {
         

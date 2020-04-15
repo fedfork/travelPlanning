@@ -27,7 +27,6 @@ class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     var tripId: String?
-    
     var goods = [Good] ()
     
     var trip: Trip?
@@ -189,7 +188,7 @@ class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                   }
 
                   
-                let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: [String](), goodIds: goodIds, timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
+                let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: [String](), goodIds: goodIds, goalIds: [String](), timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
                   
                   self.trip = trip
          
@@ -255,8 +254,6 @@ class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         }
                     var newGood = Good (name: goodJSON["name"].string ?? "", description: goodJSON["description"].string ?? "", id: goodJSON["id"].string ?? "", isTaken: goodJSON["isVisited"].bool ?? false)
                         
-                       
-                    
                     
                     
                     self.goods.append(newGood)

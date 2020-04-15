@@ -119,6 +119,15 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
                 
                 self.present(goodsVC, animated: true, completion: nil)
                 
+            case "Цели":
+                let strb = UIStoryboard(name: "Main", bundle: nil)
+                let goalsVC = strb.instantiateViewController(withIdentifier: "goalsVC") as! goalsViewController
+                goalsVC.tripId = tripId
+                
+                goalsVC.modalPresentationStyle = .fullScreen
+                
+                self.present(goalsVC, animated: true, completion: nil)
+                
             
                 
                 return
@@ -183,7 +192,13 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
                                     goodIds.append(goodId)
                                 }
                                 
-                                let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: goodIds, timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
+                                var goalIds: [String] = []
+                                for (num,goalId):(String, JSON) in tripJson["goalIds"] {
+                                    guard let goalId = goalId.string else {continue}
+                                    goalIds.append(goalId)
+                                }
+                                
+                                let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: goodIds, goalIds: goalIds, timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
                                 
                                 self.trip = trip
                        
@@ -238,10 +253,10 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         cellParameters[0] = parameter
         
-        parameter = cellParameter(name: "Цели", widthMult: 0.32, counter: 0)
+        parameter = cellParameter(name: "Цели", widthMult: 0.32, counter: trip?.goalIds.count ?? 0)
         cellParameters[1] = parameter
         
-        parameter = cellParameter(name: "Вещи к сбору", widthMult: 0.95, counter: trip?.goodIds.count ?? 0)
+        parameter = cellParameter(name: "Вещи к сбору", widthMult: 1.0, counter: trip?.goodIds.count ?? 0)
         cellParameters[2] = parameter
         
         showCvData()

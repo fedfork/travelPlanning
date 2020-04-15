@@ -201,9 +201,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                         }
                         
 //                        let tripJs = try? JSONSerialization.jsonObject(with: data2!, options: .mutableContainers) as? NSDictionary
+                        print (data2)
+                        
                         
                         let tripJs = try? JSON(data: data2!)
+                        
+                        
                         guard let tripJson = tripJs else { print ("unable to parse trip's json of trip " + tripId); return}
+                        
                         
                         print (tripJson)
                         
@@ -219,7 +224,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //
 //                        print (placeIds)
                         
-                        let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: [String](), timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
+                        let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: [String](), goalIds:[String](), timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
                         
                         
                         //Added

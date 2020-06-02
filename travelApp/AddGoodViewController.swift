@@ -12,7 +12,7 @@ import SwiftyJSON
 class AddGoodViewController: UIViewController {
     
     var delegate: refreshableDelegate?
-    var good: Good?
+    var good: Good_?
     var tripId: String?
     
     @IBAction func backButton(_ sender: Any) {
@@ -34,7 +34,7 @@ class AddGoodViewController: UIViewController {
     
     func addGoodAndLeave() {
             
-        var good = Good(name: nameLabel.text ?? "", description: "", id: "", isTaken: false)
+        var good = Good_(name: nameLabel.text ?? "", description: "", id: "", isTaken: false)
                 
                 
             
@@ -48,7 +48,7 @@ class AddGoodViewController: UIViewController {
             }
             
             
-            var requestStr = GlobalConstants.apiUrl + "/good/upsertwithtripid?token="+token
+            var requestStr = Global.apiUrl + "/good/upsertwithtripid?token="+token
             
             print (requestStr)
             

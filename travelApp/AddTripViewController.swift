@@ -66,7 +66,7 @@ class AddTripViewController: UIViewController {
         }
         
         //created url with token
-        let myUrl = URL(string: GlobalConstants.apiUrl + "/trip/upsert?token="+token)
+        let myUrl = URL(string: Global.apiUrl + "/trip/upsert?token="+token)
 
         var request = URLRequest(url:myUrl!)
         

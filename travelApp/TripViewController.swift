@@ -29,7 +29,7 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var tripId: String?
     
-    var trip: Trip? {
+    var trip: Trip_? {
         didSet {
             DispatchQueue.main.async {
                 self.tripName.text = self.trip?.Name
@@ -39,7 +39,7 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
-    var places: [Place]?
+    var places: [Place_]?
     
     @IBAction func returnClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -153,57 +153,57 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
                 }
         guard let tripId = tripId else {print ("no trip id"); return}
         
-        let myUrl1 = URL(string: GlobalConstants.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
+        let myUrl1 = URL(string: Global.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
                             
                             
-                            var tripReadRequest = URLRequest(url: myUrl1! )
-                            tripReadRequest.httpMethod = "GET"
-                            tripReadRequest.addValue ("application/json", forHTTPHeaderField: "content-type")
-                            
-                            let task2 = URLSession.shared.dataTask (with: tripReadRequest, completionHandler: { data2, response, error in
-                                
-                                if error != nil || data2 == nil {
-                                    print ("unable to retrieve trip " + tripId)
-                                    return
-                                }
-                                
-        //                        let tripJs = try? JSONSerialization.jsonObject(with: data2!, options: .mutableContainers) as? NSDictionary
-                                
-                                let tripJs = try? JSON(data: data2!)
-                                guard let tripJson = tripJs else { print ("unable to parse trip's json of trip " + tripId); return}
-                                
-                                print (tripJson)
-                                
-                                //parsing places
-                                var placeIds: [String] = []
-  
-                                
-                                //reading trip's places
+        var tripReadRequest = URLRequest(url: myUrl1! )
+        tripReadRequest.httpMethod = "GET"
+        tripReadRequest.addValue ("application/json", forHTTPHeaderField: "content-type")
+        
+        let task2 = URLSession.shared.dataTask (with: tripReadRequest, completionHandler: { data2, response, error in
+            
+            if error != nil || data2 == nil {
+                print ("unable to retrieve trip " + tripId)
+                return
+            }
+            
+//                        let tripJs = try? JSONSerialization.jsonObject(with: data2!, options: .mutableContainers) as? NSDictionary
+            
+            let tripJs = try? JSON(data: data2!)
+            guard let tripJson = tripJs else { print ("unable to parse trip's json of trip " + tripId); return}
+            
+            print (tripJson)
+            
+            //parsing places
+            var placeIds: [String] = []
 
-                                for (num,placeId):(String, JSON) in tripJson["placeIds"] {
-                                    guard let placeId = placeId.string else {continue}
-                                    placeIds.append(placeId)
-                                }
-                                
-                                var goodIds: [String] = []
+            
+            //reading trip's places
 
-                                for (num,goodId):(String, JSON) in tripJson["goodIds"] {
-                                    guard let goodId = goodId.string else {continue}
-                                    goodIds.append(goodId)
-                                }
-                                
-                                var goalIds: [String] = []
-                                for (num,goalId):(String, JSON) in tripJson["goalIds"] {
-                                    guard let goalId = goalId.string else {continue}
-                                    goalIds.append(goalId)
-                                }
-                                
-                                let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: goodIds, goalIds: goalIds, timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
-                                
-                                self.trip = trip
-                       
-        //                        trip.getDateStringFromTo()
-                                
+            for (num,placeId):(String, JSON) in tripJson["placeIds"] {
+                guard let placeId = placeId.string else {continue}
+                placeIds.append(placeId)
+            }
+            
+            var goodIds: [String] = []
+
+            for (num,goodId):(String, JSON) in tripJson["goodIds"] {
+                guard let goodId = goodId.string else {continue}
+                goodIds.append(goodId)
+            }
+            
+            var goalIds: [String] = []
+            for (num,goalId):(String, JSON) in tripJson["goalIds"] {
+                guard let goalId = goalId.string else {continue}
+                goalIds.append(goalId)
+            }
+            
+            let trip = Trip_(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: goodIds, goalIds: goalIds, timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
+            
+            self.trip = trip
+   
+//                        trip.getDateStringFromTo()
+            
                                 
                             })
                             task2.resume()

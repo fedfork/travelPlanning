@@ -20,7 +20,7 @@ class AddPlaceViewController: UIViewController, UITextViewDelegate {
     }
     
     var delegate: refreshableDelegate?
-    var place: Place?
+    var place: Place_?
     var tripId: String?
     
     var state = PlaceControllerStates.add
@@ -167,7 +167,7 @@ class AddPlaceViewController: UIViewController, UITextViewDelegate {
             descrip = desc
         }
         
-        var place = Place(name: nameField.text ?? "", adress: adressField.text ?? "", Description: descrip, id: "", checked: false, userId: "")
+        var place = Place_(name: nameField.text ?? "", adress: adressField.text ?? "", Description: descrip, id: "", checked: false, userId: "")
         
         guard let tripId = tripId else { print ("bad trip"); return }
         
@@ -179,7 +179,7 @@ class AddPlaceViewController: UIViewController, UITextViewDelegate {
         }
         
         
-        var requestStr = GlobalConstants.apiUrl + "/place/upsertwithtripid?token="+token
+        var requestStr = Global.apiUrl + "/place/upsertwithtripid?token="+token
         
         print (requestStr)
         
@@ -262,7 +262,7 @@ class AddPlaceViewController: UIViewController, UITextViewDelegate {
     func savePlaceAndChangeMode()  {
         guard let place = place else { print ("place is missing"); return  }
         
-        var newPlace = Place(name: nameField.text ?? "", adress: adressField.text ?? "", Description: descTextView.text ?? "", id: place.id, checked: place.checked, userId: place.userId)
+        var newPlace = Place_(name: nameField.text ?? "", adress: adressField.text ?? "", Description: descTextView.text ?? "", id: place.id, checked: place.checked, userId: place.userId)
         
 //        guard let trip = trip else { print ("bad trip"); return }
                 
@@ -273,7 +273,7 @@ class AddPlaceViewController: UIViewController, UITextViewDelegate {
             return
         }
         
-        let myUrl = URL(string: GlobalConstants.apiUrl + "/place/upsert?token="+token)
+        let myUrl = URL(string: Global.apiUrl + "/place/upsert?token="+token)
 
         var request = URLRequest(url:myUrl!)
         

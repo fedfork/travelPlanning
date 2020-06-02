@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class Trip {
+class Trip_ {
     internal init(Id: String, Name: String, TextField: String, PlaceIds: [String], goodIds: [String], goalIds: [String], timeFrom: Int64, timeTo: Int64) {
         self.Id = Id
         self.Name = Name

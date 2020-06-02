@@ -16,14 +16,14 @@ class ShowAllPlacesViewController: UIViewController, UITableViewDelegate, UITabl
     
     var tripId: String?
     
-    var trip: Trip? {
+    var trip: Trip_? {
         didSet
         {
             loadPlaces()
         }
     }
     
-    var places: [Place] = [Place]()
+    var places: [Place_] = [Place_]()
 
     @IBOutlet var tableView: UITableView!
     
@@ -101,19 +101,19 @@ class ShowAllPlacesViewController: UIViewController, UITableViewDelegate, UITabl
             
             guard let currentTrip = trip else {print("no trip"); return}
                 
-            places = [Place]()
+            places = [Place_]()
             
             for placeId in currentTrip.PlaceIds
             {
                 //created url with token
-                let myUrl = URL(string: GlobalConstants.apiUrl + "/place/read?token="+token+"&id="+placeId)
+                let myUrl = URL(string: Global.apiUrl + "/place/read?token="+token+"&id="+placeId)
                 
                 var request = URLRequest(url:myUrl!)
                 
                 request.httpMethod = "GET"
                 request.addValue ("application/json", forHTTPHeaderField: "content-type")
                 
-                var places = [Place] ()
+                var places = [Place_] ()
                 //performing request to get place
                 let task = URLSession.shared.dataTask (with: request, completionHandler: { data, response, error in
 
@@ -140,7 +140,7 @@ class ShowAllPlacesViewController: UIViewController, UITableViewDelegate, UITabl
                                 print ("unable to parse trip identifiers")
                                 return
                         }
-                    var newPlace = Place(name: placeJSON["name"].string ?? "", adress: placeJSON["adress"].string ?? "", Description: placeJSON["description"].string ?? "", id: placeJSON["id"].string ?? "", checked: placeJSON["isVisited"].bool ?? false, userId: placeJSON["userId"].string ?? "")
+                    var newPlace = Place_(name: placeJSON["name"].string ?? "", adress: placeJSON["adress"].string ?? "", Description: placeJSON["description"].string ?? "", id: placeJSON["id"].string ?? "", checked: placeJSON["isVisited"].bool ?? false, userId: placeJSON["userId"].string ?? "")
                     
                     
                     
@@ -159,7 +159,7 @@ class ShowAllPlacesViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     
-    func presentPlaceVC (inMode: AddPlaceViewController.PlaceControllerStates, place: Place?){
+    func presentPlaceVC (inMode: AddPlaceViewController.PlaceControllerStates, place: Place_?){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let placeVC = storyboard.instantiateViewController(identifier: "placeVC") as! AddPlaceViewController
         
@@ -187,7 +187,7 @@ class ShowAllPlacesViewController: UIViewController, UITableViewDelegate, UITabl
               }
         guard let tripId = tripId else {print ("no trip id"); return}
 
-        let myUrl1 = URL(string: GlobalConstants.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
+        let myUrl1 = URL(string: Global.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
         
         var tripReadRequest = URLRequest(url: myUrl1! )
         tripReadRequest.httpMethod = "GET"
@@ -222,7 +222,7 @@ class ShowAllPlacesViewController: UIViewController, UITableViewDelegate, UITabl
                                   }
 
                                   
-                                let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: [String](), goalIds: [String](), timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
+                                let trip = Trip_(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: [String](), goalIds: [String](), timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
                                   
                                   self.trip = trip
                          
@@ -243,7 +243,7 @@ class ShowAllPlacesViewController: UIViewController, UITableViewDelegate, UITabl
                 }
                 
                 
-        var requestStr = GlobalConstants.apiUrl + "/place/delete?id="+withId+"&deletefromtrip=true"+"&token="+token
+        var requestStr = Global.apiUrl + "/place/delete?id="+withId+"&deletefromtrip=true"+"&token="+token
         
         
         

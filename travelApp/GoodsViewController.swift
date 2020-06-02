@@ -27,9 +27,9 @@ class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     var tripId: String?
-    var goods = [Good] ()
+    var goods = [Good_] ()
     
-    var trip: Trip?
+    var trip: Trip_?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         checkUncheckGood(good: goods[indexPath.item], numOfRow: indexPath)
     }
     
-    func checkUncheckGood (good: Good, numOfRow: IndexPath){
+    func checkUncheckGood (good: Good_, numOfRow: IndexPath){
         let tok = KeychainWrapper.standard.string(forKey: "accessToken")
         guard let token = tok else {
             print ("ubable to read from the keychain")
@@ -72,7 +72,7 @@ class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             return
         }
         guard let tripId = tripId else {print ("no trip id"); return}
-        let myUrl1 = URL(string: GlobalConstants.apiUrl + "/good/upsert" + "?token=" + token)
+        let myUrl1 = URL(string: Global.apiUrl + "/good/upsert" + "?token=" + token)
         
         var request = URLRequest(url: myUrl1!)
         request.httpMethod = "POST"
@@ -151,7 +151,7 @@ class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                       }
               guard let tripId = tripId else {print ("no trip id"); return}
               
-              let myUrl1 = URL(string: GlobalConstants.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
+              let myUrl1 = URL(string: Global.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
             
             
             
@@ -188,7 +188,7 @@ class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                   }
 
                   
-                let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: [String](), goodIds: goodIds, goalIds: [String](), timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
+                let trip = Trip_(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: [String](), goodIds: goodIds, goalIds: [String](), timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
                   
                   self.trip = trip
          
@@ -214,12 +214,12 @@ class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             guard let currentTrip = trip else {print("no trip"); return}
         
-        self.goods = [Good]()
+        self.goods = [Good_]()
         
             for goodId in currentTrip.goodIds
             {
                 //created url with token
-                let myUrl = URL(string: GlobalConstants.apiUrl + "/good/read?token="+token+"&id="+goodId)
+                let myUrl = URL(string: Global.apiUrl + "/good/read?token="+token+"&id="+goodId)
                 
                 var request = URLRequest(url:myUrl!)
                 
@@ -252,7 +252,7 @@ class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                 print ("unable to parse trip identifiers")
                                 return
                         }
-                    var newGood = Good (name: goodJSON["name"].string ?? "", description: goodJSON["description"].string ?? "", id: goodJSON["id"].string ?? "", isTaken: goodJSON["isVisited"].bool ?? false)
+                    var newGood = Good_ (name: goodJSON["name"].string ?? "", description: goodJSON["description"].string ?? "", id: goodJSON["id"].string ?? "", isTaken: goodJSON["isVisited"].bool ?? false)
                         
                     
                     
@@ -291,7 +291,7 @@ class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
                     
                     
-            var requestStr = GlobalConstants.apiUrl + "/good/delete?id="+withId+"&deletefromtrip=true"+"&token="+token
+            var requestStr = Global.apiUrl + "/good/delete?id="+withId+"&deletefromtrip=true"+"&token="+token
             
             
             

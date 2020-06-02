@@ -19,8 +19,8 @@ class goalsViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     
     var tripId: String?
-    var goals = [Goal] ()
-    var trip: Trip?
+    var goals = [Goal_] ()
+    var trip: Trip_?
     
     @IBOutlet var collectionView: UICollectionView!
     
@@ -75,7 +75,7 @@ class goalsViewController: UIViewController, UICollectionViewDataSource, UIColle
         return
     }
     
-    func checkUncheckGoal (goal: Goal, numOfRow: IndexPath){
+    func checkUncheckGoal (goal: Goal_, numOfRow: IndexPath){
         var cell = self.collectionView.cellForItem(at: numOfRow) as! GoalCollectionViewCell
         
         
@@ -93,7 +93,7 @@ class goalsViewController: UIViewController, UICollectionViewDataSource, UIColle
             return
         }
         guard let tripId = tripId else {print ("no trip id"); return}
-        let myUrl1 = URL(string: GlobalConstants.apiUrl + "/goal/upsert" + "?token=" + token)
+        let myUrl1 = URL(string: Global.apiUrl + "/goal/upsert" + "?token=" + token)
         
         var request = URLRequest(url: myUrl1!)
         request.httpMethod = "POST"
@@ -175,7 +175,7 @@ class goalsViewController: UIViewController, UICollectionViewDataSource, UIColle
                   }
           guard let tripId = tripId else {print ("no trip id"); return}
           
-          let myUrl1 = URL(string: GlobalConstants.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
+          let myUrl1 = URL(string: Global.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
         
         
             
@@ -212,7 +212,7 @@ class goalsViewController: UIViewController, UICollectionViewDataSource, UIColle
                       }
 
                       
-                    let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: [String](), goodIds: [String](), goalIds: goalIds, timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
+                    let trip = Trip_(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: [String](), goodIds: [String](), goalIds: goalIds, timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
                       
                       self.trip = trip
              
@@ -245,7 +245,7 @@ class goalsViewController: UIViewController, UICollectionViewDataSource, UIColle
 
         guard let currentTrip = trip else {print("no trip"); return}
         
-        self.goals = [Goal]()
+        self.goals = [Goal_]()
         
         var group = DispatchGroup()
         print ("CTGI=")
@@ -254,7 +254,7 @@ class goalsViewController: UIViewController, UICollectionViewDataSource, UIColle
             {
                 group.enter()
                 //created url with token
-                let myUrl = URL(string: GlobalConstants.apiUrl + "/goal/read?token="+token+"&id="+goalId)
+                let myUrl = URL(string: Global.apiUrl + "/goal/read?token="+token+"&id="+goalId)
                 
                 var request = URLRequest(url:myUrl!)
                 
@@ -287,7 +287,7 @@ class goalsViewController: UIViewController, UICollectionViewDataSource, UIColle
                                 print ("unable to parse trip identifiers")
                                 return
                         }
-                    var newGoal = Goal (name: goalJSON["name"].string ?? "", description: goalJSON["description"].string ?? "", id: goalJSON["id"].string ?? "", isDone: goalJSON["isDone"].bool ?? false)
+                    var newGoal = Goal_ (name: goalJSON["name"].string ?? "", description: goalJSON["description"].string ?? "", id: goalJSON["id"].string ?? "", isDone: goalJSON["isDone"].bool ?? false)
                     
                     self.goals.append(newGoal)
                     group.leave()
@@ -319,7 +319,7 @@ class goalsViewController: UIViewController, UICollectionViewDataSource, UIColle
                 return
             }
         
-            var requestStr = GlobalConstants.apiUrl + "/goal/delete?id="+withId+"&deletefromtrip=true"+"&token="+token
+            var requestStr = Global.apiUrl + "/goal/delete?id="+withId+"&deletefromtrip=true"+"&token="+token
         
                     print (requestStr)
                     
@@ -404,7 +404,7 @@ class goalsViewController: UIViewController, UICollectionViewDataSource, UIColle
            }
        }
     
-    func editGoal(goal: Goal){
+    func editGoal(goal: Goal_){
         
     }
     

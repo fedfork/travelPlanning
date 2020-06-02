@@ -13,7 +13,7 @@ import SwiftyJSON
 class AddGoalViewController: UIViewController {
 
     var delegate: refreshableDelegate?
-    var goal: Good?
+    var goal: Good_?
     var tripId: String?
     
     @IBOutlet var nameField: UITextField!
@@ -38,7 +38,7 @@ class AddGoalViewController: UIViewController {
     
      func addGoalAndLeave() {
                 
-            var goal = Goal(name: nameField.text ?? "", description: "", id: "", isDone: false)
+            var goal = Goal_(name: nameField.text ?? "", description: "", id: "", isDone: false)
                     
                     
                 
@@ -52,7 +52,7 @@ class AddGoalViewController: UIViewController {
                 }
                 
                 
-                var requestStr = GlobalConstants.apiUrl + "/goal/upsertwithtripid?token="+token
+                var requestStr = Global.apiUrl + "/goal/upsertwithtripid?token="+token
                 
                 print (requestStr)
                 

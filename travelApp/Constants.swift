@@ -8,6 +8,7 @@
 
 import Foundation
 
-struct GlobalConstants {
+struct Global {
     static let apiUrl = String ("http://travelapp.fun/api")
+   
 }

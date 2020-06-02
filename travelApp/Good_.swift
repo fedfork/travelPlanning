@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Good {
+class Good_ {
     internal init(name: String, description: String, id: String, isTaken: Bool) {
         self.name = name
         self.description = description

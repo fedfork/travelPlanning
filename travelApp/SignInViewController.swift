@@ -44,7 +44,7 @@ class SignInViewController: UIViewController {
         
         view.addSubview(myActivityIndicator)
         
-        let myUrl = URL(string: GlobalConstants.apiUrl + "/auth/login")
+        let myUrl = URL(string: Global.apiUrl + "/auth/login")
 
         var request = URLRequest(url:myUrl!)
 

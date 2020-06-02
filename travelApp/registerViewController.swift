@@ -40,7 +40,7 @@ class registerViewController: UIViewController {
             return
         }
         
-        let myUrl = URL(string: GlobalConstants.apiUrl + "/auth/register")
+        let myUrl = URL(string: Global.apiUrl + "/auth/register")
 
                 var request = URLRequest(url:myUrl!)
 

@@ -22,20 +22,26 @@
 		1C77E7952410F9B300D13BAC /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C77E7942410F9B300D13BAC /* TripViewController.swift */; };
 		1C77E797241111F400D13BAC /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C77E796241111F400D13BAC /* MenuCollectionViewCell.swift */; };
 		1C77E799241112D600D13BAC /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C77E798241112D600D13BAC /* HeaderCollectionReusableView.swift */; };
-		1C77E79B2411149A00D13BAC /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C77E79A2411149A00D13BAC /* Place.swift */; };
+		1C77E79B2411149A00D13BAC /* Place_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C77E79A2411149A00D13BAC /* Place_.swift */; };
 		1C7F51BA241E803600D32DF6 /* ShowAllPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7F51B9241E803600D32DF6 /* ShowAllPlacesViewController.swift */; };
 		1C7F51BC241EB4BD00D32DF6 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7F51BB241EB4BD00D32DF6 /* PlaceTableViewCell.swift */; };
 		1C9142DD24252DC4001546DF /* GoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9142DC24252DC4001546DF /* GoodsViewController.swift */; };
 		1C9142DF24258FB1001546DF /* GoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9142DE24258FB1001546DF /* GoodsTableViewCell.swift */; };
-		1C9142E12426067C001546DF /* Good.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9142E02426067C001546DF /* Good.swift */; };
+		1C9142E12426067C001546DF /* Good_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9142E02426067C001546DF /* Good_.swift */; };
 		1CA190872406E45500800346 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA190862406E45500800346 /* Constants.swift */; };
-		1CA1909824094FFB00800346 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA1909724094FFB00800346 /* Trip.swift */; };
+		1CA1909824094FFB00800346 /* Trip_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA1909724094FFB00800346 /* Trip_.swift */; };
+		1CA22CBD2480969C0025D331 /* StorageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA22CBC2480969C0025D331 /* StorageCoordinator.swift */; };
+		1CB79AC9248453EE0012D21C /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB79AC1248453EE0012D21C /* Goal+CoreDataClass.swift */; };
+		1CB79ACB248453EE0012D21C /* Good+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB79AC3248453EE0012D21C /* Good+CoreDataClass.swift */; };
+		1CB79ACD248453EE0012D21C /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB79AC5248453EE0012D21C /* Trip+CoreDataClass.swift */; };
+		1CB79ACF248453EE0012D21C /* Place+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB79AC7248453EE0012D21C /* Place+CoreDataClass.swift */; };
+		1CB79AD3248466B30012D21C /* Purchase+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB79AD1248466B30012D21C /* Purchase+CoreDataClass.swift */; };
 		1CBFA593243D2B9300DBB66D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA592243D2B9300DBB66D /* StartViewController.swift */; };
 		1CBFA595243E16D900DBB66D /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA594243E16D800DBB66D /* registerViewController.swift */; };
 		1CBFA597243E272E00DBB66D /* message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA596243E272E00DBB66D /* message.swift */; };
 		1CBFA599243E9F6300DBB66D /* goalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA598243E9F6300DBB66D /* goalsViewController.swift */; };
 		1CBFA59B243EA2BC00DBB66D /* GoalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA59A243EA2BC00DBB66D /* GoalCollectionViewCell.swift */; };
-		1CBFA5A1243EC8D700DBB66D /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA5A0243EC8D700DBB66D /* Goal.swift */; };
+		1CBFA5A1243EC8D700DBB66D /* Goal_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA5A0243EC8D700DBB66D /* Goal_.swift */; };
 		1CD0283823F06CD900B000F8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD0283723F06CD900B000F8 /* HomeViewController.swift */; };
 		1CD206CA2426995E004229EE /* AddGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD206C92426995E004229EE /* AddGoodViewController.swift */; };
 		6E12790239F6D47EA95D63B9 /* Pods_travelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C55C4B39C1427D75CDFAA2F /* Pods_travelApp.framework */; };
@@ -59,20 +65,26 @@
 		1C77E7942410F9B300D13BAC /* TripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
 		1C77E796241111F400D13BAC /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		1C77E798241112D600D13BAC /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
-		1C77E79A2411149A00D13BAC /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		1C77E79A2411149A00D13BAC /* Place_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place_.swift; sourceTree = "<group>"; };
 		1C7F51B9241E803600D32DF6 /* ShowAllPlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllPlacesViewController.swift; sourceTree = "<group>"; };
 		1C7F51BB241EB4BD00D32DF6 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		1C9142DC24252DC4001546DF /* GoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsViewController.swift; sourceTree = "<group>"; };
 		1C9142DE24258FB1001546DF /* GoodsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableViewCell.swift; sourceTree = "<group>"; };
-		1C9142E02426067C001546DF /* Good.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Good.swift; sourceTree = "<group>"; };
+		1C9142E02426067C001546DF /* Good_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Good_.swift; sourceTree = "<group>"; };
 		1CA190862406E45500800346 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		1CA1909724094FFB00800346 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		1CA1909724094FFB00800346 /* Trip_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip_.swift; sourceTree = "<group>"; };
+		1CA22CBC2480969C0025D331 /* StorageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageCoordinator.swift; sourceTree = "<group>"; };
+		1CB79AC1248453EE0012D21C /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1CB79AC3248453EE0012D21C /* Good+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Good+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1CB79AC5248453EE0012D21C /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1CB79AC7248453EE0012D21C /* Place+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1CB79AD1248466B30012D21C /* Purchase+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		1CBFA592243D2B9300DBB66D /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		1CBFA594243E16D800DBB66D /* registerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerViewController.swift; sourceTree = "<group>"; };
 		1CBFA596243E272E00DBB66D /* message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = message.swift; sourceTree = "<group>"; };
 		1CBFA598243E9F6300DBB66D /* goalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = goalsViewController.swift; sourceTree = "<group>"; };
 		1CBFA59A243EA2BC00DBB66D /* GoalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCollectionViewCell.swift; sourceTree = "<group>"; };
-		1CBFA5A0243EC8D700DBB66D /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		1CBFA5A0243EC8D700DBB66D /* Goal_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal_.swift; sourceTree = "<group>"; };
 		1CD0283723F06CD900B000F8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1CD206C92426995E004229EE /* AddGoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddGoodViewController.swift; path = /Users/neabra/Documents/TravelApp/travelApp/travelApp/AddGoodViewController.swift; sourceTree = "<absolute>"; };
 		25CC9DD89075F421926049E7 /* Pods-travelApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelApp.debug.xcconfig"; path = "Target Support Files/Pods-travelApp/Pods-travelApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,7 +125,13 @@
 		1C391E6D23E7445B00647FF4 /* travelApp */ = {
 			isa = PBXGroup;
 			children = (
+				1CB79AD1248466B30012D21C /* Purchase+CoreDataClass.swift */,
+				1CB79AC1248453EE0012D21C /* Goal+CoreDataClass.swift */,
+				1CB79AC3248453EE0012D21C /* Good+CoreDataClass.swift */,
+				1CB79AC5248453EE0012D21C /* Trip+CoreDataClass.swift */,
+				1CB79AC7248453EE0012D21C /* Place+CoreDataClass.swift */,
 				1C391E6E23E7445B00647FF4 /* AppDelegate.swift */,
+				1CA22CBC2480969C0025D331 /* StorageCoordinator.swift */,
 				1C391E7023E7445B00647FF4 /* SceneDelegate.swift */,
 				1C391E7423E7445B00647FF4 /* Main.storyboard */,
 				1CBFA59A243EA2BC00DBB66D /* GoalCollectionViewCell.swift */,
@@ -140,11 +158,11 @@
 				1C391E7C23E7446300647FF4 /* LaunchScreen.storyboard */,
 				1C391E7F23E7446300647FF4 /* Info.plist */,
 				1C391E7723E7445B00647FF4 /* travelApp.xcdatamodeld */,
-				1C9142E02426067C001546DF /* Good.swift */,
-				1C77E79A2411149A00D13BAC /* Place.swift */,
-				1CA1909724094FFB00800346 /* Trip.swift */,
+				1C9142E02426067C001546DF /* Good_.swift */,
+				1C77E79A2411149A00D13BAC /* Place_.swift */,
+				1CA1909724094FFB00800346 /* Trip_.swift */,
 				1CA190862406E45500800346 /* Constants.swift */,
-				1CBFA5A0243EC8D700DBB66D /* Goal.swift */,
+				1CBFA5A0243EC8D700DBB66D /* Goal_.swift */,
 			);
 			path = travelApp;
 			sourceTree = "<group>";
@@ -281,32 +299,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CB79ACB248453EE0012D21C /* Good+CoreDataClass.swift in Sources */,
 				1CBFA599243E9F6300DBB66D /* goalsViewController.swift in Sources */,
+				1CA22CBD2480969C0025D331 /* StorageCoordinator.swift in Sources */,
 				1CD0283823F06CD900B000F8 /* HomeViewController.swift in Sources */,
+				1CB79AD3248466B30012D21C /* Purchase+CoreDataClass.swift in Sources */,
 				1C77E7952410F9B300D13BAC /* TripViewController.swift in Sources */,
-				1C9142E12426067C001546DF /* Good.swift in Sources */,
+				1C9142E12426067C001546DF /* Good_.swift in Sources */,
 				1C391E7923E7445B00647FF4 /* travelApp.xcdatamodeld in Sources */,
 				1CD206CA2426995E004229EE /* AddGoodViewController.swift in Sources */,
 				1CBFA597243E272E00DBB66D /* message.swift in Sources */,
-				1CBFA5A1243EC8D700DBB66D /* Goal.swift in Sources */,
+				1CBFA5A1243EC8D700DBB66D /* Goal_.swift in Sources */,
 				1CBFA59B243EA2BC00DBB66D /* GoalCollectionViewCell.swift in Sources */,
 				1CBFA593243D2B9300DBB66D /* StartViewController.swift in Sources */,
 				1C391E6F23E7445B00647FF4 /* AppDelegate.swift in Sources */,
 				1C4FC2B8241EEEEB00FD19A0 /* AddPlaceViewController.swift in Sources */,
 				1C77E799241112D600D13BAC /* HeaderCollectionReusableView.swift in Sources */,
 				1C391E8623E751BB00647FF4 /* SignInViewController.swift in Sources */,
-				1CA1909824094FFB00800346 /* Trip.swift in Sources */,
+				1CA1909824094FFB00800346 /* Trip_.swift in Sources */,
 				1C9142DF24258FB1001546DF /* GoodsTableViewCell.swift in Sources */,
 				1CBFA595243E16D900DBB66D /* registerViewController.swift in Sources */,
 				1C77E793240ED49800D13BAC /* AddTripViewController.swift in Sources */,
 				1C77E797241111F400D13BAC /* MenuCollectionViewCell.swift in Sources */,
+				1CB79AC9248453EE0012D21C /* Goal+CoreDataClass.swift in Sources */,
 				1C4FC2BA2421751000FD19A0 /* PlaceControllerStates.swift in Sources */,
+				1CB79ACD248453EE0012D21C /* Trip+CoreDataClass.swift in Sources */,
 				1C9142DD24252DC4001546DF /* GoodsViewController.swift in Sources */,
 				1C58B6DE243F11ED008F02E3 /* AddGoalViewController.swift in Sources */,
+				1CB79ACF248453EE0012D21C /* Place+CoreDataClass.swift in Sources */,
 				1CA190872406E45500800346 /* Constants.swift in Sources */,
 				1C391E7123E7445B00647FF4 /* SceneDelegate.swift in Sources */,
 				1C77E790240DA4BC00D13BAC /* TripCollectionViewCell.swift in Sources */,
-				1C77E79B2411149A00D13BAC /* Place.swift in Sources */,
+				1C77E79B2411149A00D13BAC /* Place_.swift in Sources */,
 				1C7F51BA241E803600D32DF6 /* ShowAllPlacesViewController.swift in Sources */,
 				1C7F51BC241EB4BD00D32DF6 /* PlaceTableViewCell.swift in Sources */,
 			);

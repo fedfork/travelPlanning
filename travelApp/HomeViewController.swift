@@ -9,7 +9,7 @@
 import UIKit
 import SwiftKeychainWrapper
 import SwiftyJSON
-
+import CoreData
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -33,7 +33,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
-    var trips : [Trip]?
+    var trips : [Trip_]?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -92,6 +92,66 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gesture:)))
         collectionView.addGestureRecognizer(longPressGesture)
         
+        //let sc = StorageCoordinator()
+        //sc.synchroniseWithServer()
+        
+        //тест - кладем в кордату трип, помеченный измененным; получаем его с помощью фетчреквеста, печатаем
+        
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+          return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        guard let tripEntity = NSEntityDescription.entity(forEntityName:"Trip", in: managedContext) else {print("bad trip entity"); return}
+        guard let goodEntity = NSEntityDescription.entity(forEntityName:"Good", in: managedContext) else {print("bad trip entity"); return}
+        guard let goalEntity = NSEntityDescription.entity(forEntityName:"Goal", in: managedContext) else {print("bad trip entity"); return}
+        guard let purchaseEntity = NSEntityDescription.entity(forEntityName:"Purchase", in: managedContext) else { print("bad trip entity"); return }
+        guard let placeEntity = NSEntityDescription.entity(forEntityName:"Place", in: managedContext) else { print("bad trip entity"); return }
+        //кладем в кор дату
+        let trip = Trip(entity:tripEntity, insertInto: managedContext)
+        trip.name = "BAD trip"
+        trip.textField = "very BAD trip"
+        trip.wasChanged = true
+        
+        let trip2 = Trip(entity:tripEntity, insertInto: managedContext)
+        trip2.name = "GOOD trip"
+        trip2.textField = "very GOOD trip"
+        trip2.wasChanged = false
+        do {
+            try managedContext.save()
+        } catch let error {
+            print (error.localizedDescription)
+            return
+        }
+        guard let changedTrips = Trip.fetchAllChangedTrips() else {print ("did not get trips"); return }
+        
+        print ("changed trips:")
+        print (changedTrips)
+        
+        let purchase = Purchase (entity:purchaseEntity, insertInto: managedContext)
+        purchase.name = "purch1"
+        purchase.wasChanged = true
+        guard let changedPurchases = Purchase.fetchAllChangedPurchases() else {print ("did not get trips"); return }
+        print ("changed purchases:")
+        print (changedPurchases)
+        
+       
+        
+        let good = Good (entity:goodEntity, insertInto: managedContext)
+        good.name = "good1"
+        good.wasChanged = true
+        guard let changedGoods = Good.fetchAllChangedGoods() else {print ("did not get goods"); return }
+        print ("changed purchases:")
+        print (changedGoods)
+        
+        let place = Place (entity:placeEntity, insertInto: managedContext)
+        place.name = "place1"
+        place.wasChanged = true
+        guard let changedPlaces = Place.fetchAllChangedPlaces() else {print ("did not get places"); return }
+        print ("changed place:")
+        print (changedPlaces)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,7 +199,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         trips = nil
                 
         //created url with token
-        let myUrl = URL(string: GlobalConstants.apiUrl + "/trip/getall?token="+token)
+        let myUrl = URL(string: Global.apiUrl + "/trip/getall?token="+token)
 
         var request = URLRequest(url:myUrl!)
 
@@ -186,8 +246,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             //retrieving trips by their identifiers
                 for tripId in tripIdentifiers {
                     
-                    let myUrl1 = URL(string: GlobalConstants.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
-                    print ("url for trip read request = " + GlobalConstants.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
+                    let myUrl1 = URL(string: Global.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
+                    print ("url for trip read request = " + Global.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
                     
                     var tripReadRequest = URLRequest(url: myUrl1! )
                     tripReadRequest.httpMethod = "GET"
@@ -224,7 +284,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //
 //                        print (placeIds)
                         
-                        let trip = Trip(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: [String](), goalIds:[String](), timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
+                        let trip = Trip_(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: [String](), goalIds:[String](), timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
                         
                         
                         //Added
@@ -232,7 +292,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                         
     
                         if self.trips == nil {
-                            self.trips = [Trip]()
+                            self.trips = [Trip_]()
                         }
                         self.trips!.append (trip)
                         self.tripCounterAfter += 1
@@ -297,8 +357,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
 //created url with token
-        let myUrl = URL(string: GlobalConstants.apiUrl + "/trip/delete?token="+token+"&id="+tripId)
-        print ("URL=\(GlobalConstants.apiUrl + "/trip/delete?token="+token+"&id="+tripId)")
+        let myUrl = URL(string: Global.apiUrl + "/trip/delete?token="+token+"&id="+tripId)
+        print ("URL=\(Global.apiUrl + "/trip/delete?token="+token+"&id="+tripId)")
         var request = URLRequest(url:myUrl!)
         
         request.httpMethod = "DELETE"

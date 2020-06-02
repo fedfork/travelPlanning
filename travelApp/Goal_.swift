@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Goal{
+class Goal_{
     internal init( name: String, description: String, id: String, isDone: Bool) {
         self.id = id
         self.name = name

@@ -10,8 +10,8 @@
         <relationship name="goaltotrip" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Trip" inverseName="triptogoal" inverseEntity="Trip"/>
     </entity>
     <entity name="Good" representedClassName="Good" syncable="YES" codeGenerationType="category">
-        <attribute name="amount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="desript" attributeType="String"/>
+        <attribute name="count" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="descript" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isTaken" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
@@ -57,7 +57,7 @@
         <element name="Goal" positionX="0" positionY="108" width="128" height="148"/>
         <element name="Good" positionX="-36" positionY="72" width="128" height="163"/>
         <element name="Place" positionX="-54" positionY="36" width="128" height="163"/>
-        <element name="Trip" positionX="-63" positionY="-18" width="128" height="208"/>
         <element name="Purchase" positionX="-36" positionY="99" width="128" height="178"/>
+        <element name="Trip" positionX="-63" positionY="-18" width="128" height="28"/>
     </elements>
 </model>

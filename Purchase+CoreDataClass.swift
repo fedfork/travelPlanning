@@ -10,6 +10,7 @@
 import Foundation
 import CoreData
 import UIKit
+import SwiftyJSON
 
 @objc(Purchase)
 public class Purchase: NSManagedObject {
@@ -30,6 +31,11 @@ public class Purchase: NSManagedObject {
             print (error.localizedDescription)
             return nil
         }
+    }
+    
+    public func serializeToJSON() -> JSON{
+        var purchaseJSON = JSON(["id":id, "userId":userId, "categoryId":categoryId, "name":name, "description":descript, "price": price, "isBought":isBought])
+        return purchaseJSON
     }
     
 }

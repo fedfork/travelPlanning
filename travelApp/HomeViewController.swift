@@ -99,10 +99,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         guard let appDelegate =
           UIApplication.shared.delegate as? AppDelegate else {
+            print ("no delegate")
           return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        
+
         guard let tripEntity = NSEntityDescription.entity(forEntityName:"Trip", in: managedContext) else {print("bad trip entity"); return}
         guard let goodEntity = NSEntityDescription.entity(forEntityName:"Good", in: managedContext) else {print("bad trip entity"); return}
         guard let goalEntity = NSEntityDescription.entity(forEntityName:"Goal", in: managedContext) else {print("bad trip entity"); return}
@@ -114,43 +115,68 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         trip.textField = "very BAD trip"
         trip.wasChanged = true
         
-        let trip2 = Trip(entity:tripEntity, insertInto: managedContext)
-        trip2.name = "GOOD trip"
-        trip2.textField = "very GOOD trip"
-        trip2.wasChanged = false
-        do {
-            try managedContext.save()
-        } catch let error {
-            print (error.localizedDescription)
-            return
-        }
-        guard let changedTrips = Trip.fetchAllChangedTrips() else {print ("did not get trips"); return }
+        let date = Date()
         
-        print ("changed trips:")
-        print (changedTrips)
         
-        let purchase = Purchase (entity:purchaseEntity, insertInto: managedContext)
-        purchase.name = "purch1"
-        purchase.wasChanged = true
-        guard let changedPurchases = Purchase.fetchAllChangedPurchases() else {print ("did not get trips"); return }
-        print ("changed purchases:")
-        print (changedPurchases)
-        
-       
-        
-        let good = Good (entity:goodEntity, insertInto: managedContext)
-        good.name = "good1"
-        good.wasChanged = true
-        guard let changedGoods = Good.fetchAllChangedGoods() else {print ("did not get goods"); return }
-        print ("changed purchases:")
-        print (changedGoods)
-        
+        trip.dateFrom = date
+        trip.dateTo = date
+//        let trip2 = Trip(entity:tripEntity, insertInto: managedContext)
+//        trip2.name = "GOOD trip"
+//        trip2.textField = "very GOOD trip"
+//        trip2.wasChanged = false
+//        do {
+//            try managedContext.save()
+//        } catch let error {
+//            print (error.localizedDescription)
+//            return
+//        }
+//        guard let changedTrips = Trip.fetchAllChangedTrips() else {print ("did not get trips"); return }
+//
+//        print ("changed trips:")
+//        print (changedTrips)
+//
+//        let purchase = Purchase (entity:purchaseEntity, insertInto: managedContext)
+//        purchase.name = "purch1"
+//        purchase.wasChanged = true
+//        guard let changedPurchases = Purchase.fetchAllChangedPurchases() else {print ("did not get trips"); return }
+//        print ("changed purchases:")
+//        print (changedPurchases)
+//
+//
+//
+//        let good = Good (entity:goodEntity, insertInto: managedContext)
+//        good.name = "good1"
+//        good.wasChanged = true
+//        guard let changedGoods = Good.fetchAllChangedGoods() else {print ("did not get goods"); return }
+//        print ("changed purchases:")
+//        print (changedGoods)
+
         let place = Place (entity:placeEntity, insertInto: managedContext)
+        place.id = "hzhzhzhz"
         place.name = "place1"
         place.wasChanged = true
         guard let changedPlaces = Place.fetchAllChangedPlaces() else {print ("did not get places"); return }
         print ("changed place:")
         print (changedPlaces)
+        
+        let place2 = Place (entity:placeEntity, insertInto: managedContext)
+        place2.id = "sukasuk"
+        place2.name = "place1"
+        place2.wasChanged = true
+     
+        
+        // конец теста
+        
+        //добавим к трипу место и сделаем из этого JSON
+        var placesArray: [Place] = []
+        placesArray.append(place)
+        placesArray.append(place2)
+        trip.triptoplace = NSSet(array: placesArray)
+        
+        print ("TRIP serialized to JSON:")
+        print ("TRIP serialized to JSON: \(trip.serializeToJSON())")
+        
+        
         
     }
     

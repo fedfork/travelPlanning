@@ -10,6 +10,7 @@
 import Foundation
 import CoreData
 import UIKit
+import SwiftyJSON
 
 @objc(Goal)
 public class Goal: NSManagedObject {
@@ -31,5 +32,11 @@ public class Goal: NSManagedObject {
             return nil
         }
     }
+    
+    public func serializeToJSON() -> JSON{
+        var goodJSON = JSON(["id":id, "userId":userId, "name":name, "description":descript, "isTook": isDone])
+        return goodJSON
+    }
+    
     
 }

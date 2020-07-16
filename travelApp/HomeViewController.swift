@@ -96,7 +96,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         //sc.synchroniseWithServer()
         
         //тест - кладем в кордату трип, помеченный измененным; получаем его с помощью фетчреквеста, печатаем
-        
+        /*
         guard let appDelegate =
           UIApplication.shared.delegate as? AppDelegate else {
             print ("no delegate")
@@ -175,6 +175,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         print ("TRIP serialized to JSON:")
         print ("TRIP serialized to JSON: \(trip.serializeToJSON())")
+        */
+        
+        /*
+        let sc = StorageCoordinator()
+        
+        
+        
+        print ( "server JSON: \(sc.getServerSyncJSON(time: "637304399554664569"))" )
+        let servTime = sc.getServerTime()
+        print("serverTime: \(servTime)")
+        */
         
         
         

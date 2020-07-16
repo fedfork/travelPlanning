@@ -34,7 +34,7 @@ public class Good: NSManagedObject {
     }
     
     public func serializeToJSON() -> JSON{
-        var goodJSON = JSON(["id":id, "userId":userId, "name":name, "description":descript, "isTook": isTook, "count": count ])
+        var goodJSON = JSON(["id":id, "userId":userId, "name":name, "description":descript, "isTook": isTaken, "count": count ])
         return goodJSON
     }
 

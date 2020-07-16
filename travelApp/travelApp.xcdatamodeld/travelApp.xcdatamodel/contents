@@ -22,6 +22,7 @@
     <entity name="Place" representedClassName="Place" syncable="YES" codeGenerationType="category">
         <attribute name="adress" attributeType="String"/>
         <attribute name="checked" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="descript" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -56,7 +57,7 @@
     <elements>
         <element name="Goal" positionX="0" positionY="108" width="128" height="148"/>
         <element name="Good" positionX="-36" positionY="72" width="128" height="163"/>
-        <element name="Place" positionX="-54" positionY="36" width="128" height="163"/>
+        <element name="Place" positionX="-54" positionY="36" width="128" height="178"/>
         <element name="Purchase" positionX="-36" positionY="99" width="128" height="178"/>
         <element name="Trip" positionX="-63" positionY="-18" width="128" height="28"/>
     </elements>

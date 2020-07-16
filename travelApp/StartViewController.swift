@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class StartViewController: UIViewController {
 
@@ -18,6 +19,19 @@ class StartViewController: UIViewController {
         registerButton.clipsToBounds = true
         loginButton.layer.cornerRadius = 10
         loginButton.clipsToBounds = true
+        
+        var json = JSON()
+        json["name"] = JSON ("fedor")
+        json["surname"] = JSON("korshikov")
+        UserDefaultsHelper.addDeletedEntity (ofType: "Place", entity:json)
+        
+        var json2 = JSON()
+        json2["mama"] = JSON("katya")
+        UserDefaultsHelper.addDeletedEntity (ofType: "Place", entity:json2)
+        
+        print (UserDefaultsHelper.getDeletedEntitiesList(ofType: "Place"))
+        
+        
         
         // Do any additional setup after loading the view.
     }

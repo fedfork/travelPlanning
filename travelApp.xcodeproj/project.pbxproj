@@ -44,6 +44,7 @@
 		1CBFA5A1243EC8D700DBB66D /* Goal_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA5A0243EC8D700DBB66D /* Goal_.swift */; };
 		1CD0283823F06CD900B000F8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD0283723F06CD900B000F8 /* HomeViewController.swift */; };
 		1CD206CA2426995E004229EE /* AddGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD206C92426995E004229EE /* AddGoodViewController.swift */; };
+		1CED127424BFB4DA00E24722 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED127324BFB4DA00E24722 /* UserDefaultsHelper.swift */; };
 		6E12790239F6D47EA95D63B9 /* Pods_travelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C55C4B39C1427D75CDFAA2F /* Pods_travelApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		1CBFA5A0243EC8D700DBB66D /* Goal_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal_.swift; sourceTree = "<group>"; };
 		1CD0283723F06CD900B000F8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1CD206C92426995E004229EE /* AddGoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddGoodViewController.swift; path = /Users/neabra/Documents/TravelApp/travelApp/travelApp/AddGoodViewController.swift; sourceTree = "<absolute>"; };
+		1CED127324BFB4DA00E24722 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		25CC9DD89075F421926049E7 /* Pods-travelApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelApp.debug.xcconfig"; path = "Target Support Files/Pods-travelApp/Pods-travelApp.debug.xcconfig"; sourceTree = "<group>"; };
 		4C55C4B39C1427D75CDFAA2F /* Pods_travelApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travelApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E49D63EE6D758C2FB861FE8E /* Pods-travelApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelApp.release.xcconfig"; path = "Target Support Files/Pods-travelApp/Pods-travelApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				1CB79AC7248453EE0012D21C /* Place+CoreDataClass.swift */,
 				1C391E6E23E7445B00647FF4 /* AppDelegate.swift */,
 				1CA22CBC2480969C0025D331 /* StorageCoordinator.swift */,
+				1CED127324BFB4DA00E24722 /* UserDefaultsHelper.swift */,
 				1C391E7023E7445B00647FF4 /* SceneDelegate.swift */,
 				1C391E7423E7445B00647FF4 /* Main.storyboard */,
 				1CBFA59A243EA2BC00DBB66D /* GoalCollectionViewCell.swift */,
@@ -322,6 +325,7 @@
 				1C77E793240ED49800D13BAC /* AddTripViewController.swift in Sources */,
 				1C77E797241111F400D13BAC /* MenuCollectionViewCell.swift in Sources */,
 				1CB79AC9248453EE0012D21C /* Goal+CoreDataClass.swift in Sources */,
+				1CED127424BFB4DA00E24722 /* UserDefaultsHelper.swift in Sources */,
 				1C4FC2BA2421751000FD19A0 /* PlaceControllerStates.swift in Sources */,
 				1CB79ACD248453EE0012D21C /* Trip+CoreDataClass.swift in Sources */,
 				1C9142DD24252DC4001546DF /* GoodsViewController.swift in Sources */,

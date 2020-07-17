@@ -69,6 +69,16 @@ class UserDefaultsHelper{
             UserDefaults.standard.setValue(dataArr, forKey: key)
             return true
         }
-        
+    }
+    
+    public static func wasObjectDeleted (ofType: String, id: String) -> Bool{
+        let list = getDeletedEntitiesList(ofType: ofType)
+        guard let delList = list else { return false }
+        for object in delList {
+            if object["id"].stringValue == id {
+                return true
+            }
+        }
+        return false
     }
 }

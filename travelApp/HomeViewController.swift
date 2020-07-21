@@ -177,16 +177,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         print ("TRIP serialized to JSON: \(trip.serializeToJSON())")
         */
         
-        /*
+        
         let sc = StorageCoordinator()
         
         
         
-        print ( "server JSON: \(sc.getServerSyncJSON(time: "637304399554664569"))" )
-        let servTime = sc.getServerTime()
-        print("serverTime: \(servTime)")
-        */
+        if !sc.synchroniseWithServer() {print ("went wrong")}
+        let places = Place.fetchAllPlaces(changed: false)
+        print ("Мои места в кор дате:")
+        print (places)
         
+    
         
         
     }

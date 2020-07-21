@@ -35,31 +35,76 @@ class StartViewController: UIViewController {
         let jsonString = """
         {
           "updated" : {
-            
+            "places" : [
+            {
+              "description" : "blah blah blah hahahaha",
+              "name" : "Good Place",
+              "date" : 637261344000000000,
+              "id" : "fa7822de-b294-4949-b19a-d636ab2ad3be",
+              "lastUpdate" : 637269398768254580,
+              "photoIds" : [
+                "58d79aa8-c48f-4982-a550-1a1f36510e36"
+              ],
+              "adress" : "Bolshaya Per street home 6 k 2",
+              "userId" : "57cccd13-8ac6-402c-acde-dba6b07d820b",
+              "isVisited" : false
+            },
+            ]
           },
           "deleted" : {
-            "places" : [
-              {
-                "description" : "Замок интересный. Ведь это наша история ВКЛ. Место пропитано историей. День проведёте хорошо. Полазить по старинным крутым лестницам в замке, ещё тот челендж, главное не навернуться при этом)) Внутри замка(по крайней мере где я был, а это башни в пять этажей) большинство экспонатов - это копии,что немного портит впечатление, но не на много)Виды из окон замка на окрестности открываются великолепные (особенно если хорошая погода)Ещё есть темница в подвале, где держали заключённых, жутковатое место. Место однозначно к посещению!",
-                "name" : "Мирский замок",
-                "date" : 637261344000000000,
-                "id" : "fa7822de-b294-4949-b19a-d636ab2ad3be",
-                "lastUpdate" : 637269398768254580,
-                "photoIds" : [
-                  "58d79aa8-c48f-4982-a550-1a1f36510e36"
-                ],
-                "adress" : "Красноармейская ул. 2, Мир 231444, Беларусь",
-                "userId" : "57cccd13-8ac6-402c-acde-dba6b07d820b",
-                "isVisited" : false
-              }    ],
-              }
+            
+        }
         }
         """
+       
         if let dataFromString = jsonString.data(using: .utf8, allowLossyConversion: false) {
             let json = try? JSON(data: dataFromString)
-            
             Place.syncPlaces(syncInputJson: json!)
         }
+        
+        guard let places = Place.fetchAllPlaces(changed: false) else {return }
+        print (places)
+        places[0].wasChanged = false
+        
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+          return
+        }
+        appDelegate.saveContext()
+        
+        let jsonString2 = """
+        {
+          "updated" : {
+            "places" : [
+            {
+              "description" : "blah blah blah hahahaha",
+              "name" : "Baaad Place",
+              "date" : 637261344000000000,
+              "id" : "fa7822de-b294-4949-b19a-d636ab2ad3be",
+              "lastUpdate" : 637269398768254580,
+              "photoIds" : [
+                "58d79aa8-c48f-4982-a550-1a1f36510e36"
+              ],
+              "adress" : "Bolshaya Per street home 6 k 2",
+              "userId" : "57cccd13-8ac6-402c-acde-dba6b07d820b",
+              "isVisited" : false
+            },
+            ]
+          },
+          "deleted" : {
+            
+        }
+        }
+        """
+        
+        if let dataFromString = jsonString2.data(using: .utf8, allowLossyConversion: false) {
+            let json = try? JSON(data: dataFromString)
+            Place.syncPlaces(syncInputJson: json!)
+        }
+        
+        guard let places2 = Place.fetchAllPlaces(changed: false) else {return }
+        print (places2)
+        
         
         
         // Do any additional setup after loading the view.

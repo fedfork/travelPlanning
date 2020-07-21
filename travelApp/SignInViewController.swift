@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftKeychainWrapper
-
+import SwiftyJSON
 
 
 class SignInViewController: UIViewController {
@@ -156,6 +156,8 @@ class SignInViewController: UIViewController {
         loginButton.layer.cornerRadius = 20
         loginButton.clipsToBounds = true
         // Do any additional setup after loading the view.
+        
+        
     }
     
 //    func displayMessage (title: String, message: String){

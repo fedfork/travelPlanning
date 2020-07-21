@@ -13,6 +13,7 @@ import UIKit
 import SwiftyJSON
 
 @objc(Purchase)
+
 public class Purchase: NSManagedObject {
     
     public static func fetchAllChangedPurchases() -> [Purchase]?{

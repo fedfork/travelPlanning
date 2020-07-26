@@ -29,17 +29,19 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var tripId: String?
     
-    var trip: Trip_? {
+    var trip: Trip? {
         didSet {
+            
             DispatchQueue.main.async {
-                self.tripName.text = self.trip?.Name
+                
+                self.tripName.text = self.trip?.name
             }
             
             identifyCellParameters()
         }
     }
     
-    var places: [Place_]?
+    var places: [Place]?
     
     @IBAction func returnClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -52,7 +54,6 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getTrip()
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -67,13 +68,20 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOnCell(gesture:)))
 //        collectionView.addGestureRecognizer(tapGesture)
         
+        //притаскиваем из кор даты трип и помещаем его в trip
+       
         
         
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getTrip()
+        guard let tripId = tripId else {
+                   print ("no trip ID, ret"); return }
+               guard let  trip1 = Trip.fetchTripById(id: tripId) else {
+                   print("could not fetch trip by tripId"); //TODO: show an error message
+                   return}
+               trip=trip1
     }
     
     //configuring collectionView
@@ -97,14 +105,15 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         let selectedCellHeader = cellParameters[indexPath.item].name
         
+        guard let currentTrip = trip else { print ("no current trip"); return }
+        
         switch selectedCellHeader {
             case "Места":
                 //instantiate and show places VC
                 let placesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "placesVC") as! ShowAllPlacesViewController
-                guard let currentTripId = tripId else { print ("no current trip"); return }
-                placesVC.tripId = currentTripId
                 
-                
+                placesVC.trip = currentTrip
+            
                 placesVC.modalPresentationStyle = .fullScreen
                 self.present(placesVC, animated: true, completion: nil)
             
@@ -113,7 +122,7 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
             case "Вещи к сбору":
                 let strb = UIStoryboard(name: "Main", bundle: nil)
                 let goodsVC = strb.instantiateViewController(withIdentifier: "goodsVC") as! GoodsViewController
-                goodsVC.tripId = tripId
+                goodsVC.trip = currentTrip
                 
                 goodsVC.modalPresentationStyle = .fullScreen
                 
@@ -122,7 +131,7 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
             case "Цели":
                 let strb = UIStoryboard(name: "Main", bundle: nil)
                 let goalsVC = strb.instantiateViewController(withIdentifier: "goalsVC") as! goalsViewController
-                goalsVC.tripId = tripId
+                goalsVC.trip = currentTrip
                 
                 goalsVC.modalPresentationStyle = .fullScreen
                 
@@ -138,77 +147,14 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let yourWidth = collectionView.bounds.width * cellParameters[indexPath.item].widthMultiplier
         let yourHeight = CGFloat(100.0)
         
         return CGSize(width: yourWidth, height: yourHeight)
     }
     
-    func getTrip() {
-        let tok = KeychainWrapper.standard.string(forKey: "accessToken")
-                guard let token = tok else {
-                    print ("ubable to read from the keychain")
-                    // display message
-                    return
-                }
-        guard let tripId = tripId else {print ("no trip id"); return}
-        
-        let myUrl1 = URL(string: Global.apiUrl + "/trip/read?id=" + tripId + "&token=" + token)
-                            
-                            
-        var tripReadRequest = URLRequest(url: myUrl1! )
-        tripReadRequest.httpMethod = "GET"
-        tripReadRequest.addValue ("application/json", forHTTPHeaderField: "content-type")
-        
-        let task2 = URLSession.shared.dataTask (with: tripReadRequest, completionHandler: { data2, response, error in
-            
-            if error != nil || data2 == nil {
-                print ("unable to retrieve trip " + tripId)
-                return
-            }
-            
-//                        let tripJs = try? JSONSerialization.jsonObject(with: data2!, options: .mutableContainers) as? NSDictionary
-            
-            let tripJs = try? JSON(data: data2!)
-            guard let tripJson = tripJs else { print ("unable to parse trip's json of trip " + tripId); return}
-            
-            print (tripJson)
-            
-            //parsing places
-            var placeIds: [String] = []
-
-            
-            //reading trip's places
-
-            for (num,placeId):(String, JSON) in tripJson["placeIds"] {
-                guard let placeId = placeId.string else {continue}
-                placeIds.append(placeId)
-            }
-            
-            var goodIds: [String] = []
-
-            for (num,goodId):(String, JSON) in tripJson["goodIds"] {
-                guard let goodId = goodId.string else {continue}
-                goodIds.append(goodId)
-            }
-            
-            var goalIds: [String] = []
-            for (num,goalId):(String, JSON) in tripJson["goalIds"] {
-                guard let goalId = goalId.string else {continue}
-                goalIds.append(goalId)
-            }
-            
-            let trip = Trip_(Id: tripJson["id"].string ?? "", Name: tripJson["name"].string ?? "", TextField: tripJson["textField"].string ?? "", PlaceIds: placeIds, goodIds: goodIds, goalIds: goalIds, timeFrom: tripJson["fromDate"].int64 ?? 0, timeTo: tripJson["toDate"].int64 ?? 0)
-            
-            self.trip = trip
-   
-//                        trip.getDateStringFromTo()
-            
-                                
-                            })
-                            task2.resume()
-        
-    }
+    
 
     //finished configuring colletionView
     
@@ -245,7 +191,7 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
     func identifyCellParameters() {
         
       
-        var parameter = cellParameter(name: "Места", widthMult: 0.62, counter: trip?.PlaceIds.count ?? 0)
+        var parameter = cellParameter(name: "Места", widthMult: 0.62, counter: trip?.triptoplace?.count ?? 0)
         if cellParameters.capacity == 0{
             cellParameters.append(parameter)
             cellParameters.append(parameter)
@@ -253,10 +199,10 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         cellParameters[0] = parameter
         
-        parameter = cellParameter(name: "Цели", widthMult: 0.32, counter: trip?.goalIds.count ?? 0)
+        parameter = cellParameter(name: "Цели", widthMult: 0.32, counter: trip?.triptogoal?.count ?? 0)
         cellParameters[1] = parameter
         
-        parameter = cellParameter(name: "Вещи к сбору", widthMult: 1.0, counter: trip?.goodIds.count ?? 0)
+        parameter = cellParameter(name: "Вещи к сбору", widthMult: 1.0, counter: trip?.triptogood?.count ?? 0)
         cellParameters[2] = parameter
         
         showCvData()
@@ -264,6 +210,7 @@ class TripViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     
     func showCvData (){
+        
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }

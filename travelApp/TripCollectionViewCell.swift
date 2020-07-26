@@ -43,8 +43,8 @@ class TripCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func update(for trip: Trip_) {
-        tripNameLabel.text = trip.Name
+    func update(for trip: Trip) {
+        tripNameLabel.text = trip.name
         dateFromLalel.text = trip.getDateStringFromTo()
     }
     

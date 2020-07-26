@@ -20,7 +20,7 @@ class AddPlaceViewController: UIViewController, UITextViewDelegate {
     }
     
     var delegate: refreshableDelegate?
-    var place: Place_?
+    var place: Place?
     var tripId: String?
     
     var state = PlaceControllerStates.add
@@ -260,89 +260,60 @@ class AddPlaceViewController: UIViewController, UITextViewDelegate {
     
     //edits place and then changes mode from edit to show
     func savePlaceAndChangeMode()  {
-        guard let place = place else { print ("place is missing"); return  }
-        
-        var newPlace = Place_(name: nameField.text ?? "", adress: adressField.text ?? "", Description: descTextView.text ?? "", id: place.id, checked: place.checked, userId: place.userId)
-        
-//        guard let trip = trip else { print ("bad trip"); return }
-                
-        let tok = KeychainWrapper.standard.string(forKey: "accessToken")
-        guard let token = tok else {
-            print ("ubable to read from the keychain")
-//            self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-            return
-        }
-        
-        let myUrl = URL(string: Global.apiUrl + "/place/upsert?token="+token)
-
-        var request = URLRequest(url:myUrl!)
-        
-        
-        
-        request.httpMethod = "POST"
-        request.addValue ("application/json", forHTTPHeaderField: "content-type")
-        var newPlaceJson:JSON = [:]
-        newPlaceJson["id"] = JSON(newPlace.id)
-        newPlaceJson["name"] = JSON(newPlace.name)
-        newPlaceJson["adress"] = JSON(newPlace.adress)
-        newPlaceJson["isVisited"] = JSON(newPlace.checked)
-        newPlaceJson["userId"] = JSON(newPlace.userId)
-        newPlaceJson["description"] = JSON(newPlace.description)
-        
-        
-//      newPlaceJson["tripId"] = JSON(trip.Id)
-        
-
-        do {
-           request.httpBody = try newPlaceJson.rawData()
-       } catch {
-           print ("Error \(error). No request performed, terminating")
-           return
-       }
-        
-        let group = DispatchGroup()
-        group.enter()
-        //performing request to get
-        
-        var errorFlag = false
-        let task = URLSession.shared.dataTask (with: request, completionHandler: { data, response, error in
-
-//      self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-
-            if error != nil || data == nil {
-    //          self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-                errorFlag = true
-                
-                group.leave()
-                return
-            }
-            
-            let receivedJson = JSON(data!)
-            if !( receivedJson["id"].exists() ) {
-                
-                print ("new place json")
-                print (receivedJson)
-                errorFlag = true
-                
-            }
-                group.leave()
-        })
-        
-        task.resume()
-        
-        group.notify(queue: .main) {
-            // leaving current view controller
-            if !errorFlag {
-                
-                self.place = newPlace
-                self.initiateToShow()
-                self.state = .show
-            } else {
-                print ("unable to save trip")
-                return
-            }
-        }
-        
+//        guard let place = place else { print ("place is missing"); return  }
+//
+////        var newPlace = Place_(name: nameField.text ?? "", adress: adressField.text ?? "", Description: descTextView.text ?? "", id: place.id, checked: place.checked, userId: place.userId)
+////
+//
+////        guard let trip = trip else { print ("bad trip"); return }
+//
+//
+////      newPlaceJson["tripId"] = JSON(trip.Id)
+//
+//
+//        let group = DispatchGroup()
+//        group.enter()
+//        //performing request to get
+//
+//        var errorFlag = false
+//        let task = URLSession.shared.dataTask (with: request, completionHandler: { data, response, error in
+//
+////      self.removeActivityIndicator(activityIndicator: myActivityIndicator)
+//
+//            if error != nil || data == nil {
+//    //          self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
+//                errorFlag = true
+//
+//                group.leave()
+//                return
+//            }
+//
+//            let receivedJson = JSON(data!)
+//            if !( receivedJson["id"].exists() ) {
+//
+//                print ("new place json")
+//                print (receivedJson)
+//                errorFlag = true
+//
+//            }
+//                group.leave()
+//        })
+//
+//        task.resume()
+//
+//        group.notify(queue: .main) {
+//            // leaving current view controller
+//            if !errorFlag {
+//
+//                self.place = newPlace
+//                self.initiateToShow()
+//                self.state = .show
+//            } else {
+//                print ("unable to save trip")
+//                return
+//            }
+//        }
+//
         
     }
     

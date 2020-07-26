@@ -85,28 +85,30 @@ class SignInViewController: UIViewController {
             }
 
             do {
-
-                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                let json = try? JSON(data: data!)
+                print ("строка: \(json)")
+                    
 
                 if let parseJson = json {
 
                     print (parseJson)
 
-                    let accessToken = parseJson["token"] as? String
-                    let userId = parseJson["userId"] as? String
-                    guard let token = accessToken, let id = userId else {
-                        print ("token is bad")
-                        displayMessage(vc: self, title: "Ошибка", message: "От сервера получен некорректный ответ")
-                        return
-                    }
+                    let token = parseJson["token"].stringValue
+                    let id = parseJson["userId"].stringValue
+                    
+                    
+                    
 
                     if !KeychainWrapper.standard.set(token, forKey: "accessToken") ||
                         !KeychainWrapper.standard.set(id, forKey: "userId") {
                         print ("ubable to write to the keychain")
+                        
                         displayMessage(vc: self, title: "Ошибка", message: "От сервера получен некорректный ответ")
                         return
                     }
 
+                    
+                    
                     DispatchQueue.main.async {
 
                         let strbrd = UIStoryboard(name: "Main", bundle: nil)
@@ -125,6 +127,7 @@ class SignInViewController: UIViewController {
 
 
                 } else {
+                    
                     displayMessage(vc: self, title: "Ошибка", message: "От сервера получен некорректный ответ")
                 }
 

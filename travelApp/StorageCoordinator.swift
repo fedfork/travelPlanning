@@ -525,6 +525,8 @@ class StorageCoordinator {
                          }
                          appDelegate.saveContext()
                    case "Trip":
+                    var currentTrip: Trip?
+                    
                        do {
                            let fetchedResults = try managedContext.fetch(fetchRequest)
                            let objectResults = fetchedResults as! [Trip]
@@ -537,70 +539,8 @@ class StorageCoordinator {
                                objectResults[0].dateFrom = Date(ticks: chngObject.1["fromDate"].int64Value)
                                objectResults[0].dateTo = Date(ticks: chngObject.1["toDate"].int64Value)
                                objectResults[0].wasChanged = false
-                               //iterating over Places to reconnect to them in coreData
-                               for place in syncInputJson["updated"]["trips"][ objectResults[0].id! ]["placeIds"]{
-                                   let fetchRequest1:NSFetchRequest<Place> = NSFetchRequest(entityName: "Place")
-                                   fetchRequest1.predicate = NSPredicate(format: "id == %@", place.1.stringValue) //???
-                                   do {
-                                       let fetchedResults = try managedContext.fetch(fetchRequest1)
-                                       if fetchedResults.count == 1{                                    objectResults[0].triptoplace = objectResults[0].triptoplace?.adding(fetchedResults[0]) as NSSet?
-
-                                       }
-                                       
-                                   }
-                                   catch let error {
-                                       print (error.localizedDescription)
-                                       return false
-                                   }
-                               }
-                               //iterating over Purchases to reconnect to them in coreData
-                               for purchase in syncInputJson["updated"]["trips"][ objectResults[0].id! ]["purchaseIds"]{
-                                   let fetchRequest1:NSFetchRequest<Purchase> = NSFetchRequest(entityName: "Purchase")
-                                   fetchRequest1.predicate = NSPredicate(format: "id == %@", purchase.1.stringValue) //???
-                                   do {
-                                       let fetchedResults = try managedContext.fetch(fetchRequest1)
-                                       if fetchedResults.count == 1{                                    objectResults[0].triptopurchase = objectResults[0].triptopurchase?.adding(fetchedResults[0]) as NSSet?
-
-                                       }
-                                       
-                                   }
-                                   catch let error {
-                                       print (error.localizedDescription)
-                                       return false
-                                   }
-                               }
-                               //iterating over Goals to reconnect to them in coreData
-                               for goal in syncInputJson["updated"]["trips"][ objectResults[0].id! ]["goalIds"]{
-                                   let fetchRequest1:NSFetchRequest<Goal> = NSFetchRequest(entityName: "Goal")
-                                   fetchRequest1.predicate = NSPredicate(format: "id == %@", goal.1.stringValue) //???
-                                   do {
-                                       let fetchedResults = try managedContext.fetch(fetchRequest1)
-                                       if fetchedResults.count == 1{                                    objectResults[0].triptogoal = objectResults[0].triptogoal?.adding(fetchedResults[0]) as NSSet?
-
-                                       }
-                                       
-                                   }
-                                   catch let error {
-                                       print (error.localizedDescription)
-                                       return false
-                                   }
-                               }
-                               //iterating over Goods to reconnect to them in coreData
-                               for good in syncInputJson["updated"]["trips"][ objectResults[0].id! ]["goodIds"]{
-                                   let fetchRequest1:NSFetchRequest<Good> = NSFetchRequest(entityName: "Good")
-                                   fetchRequest1.predicate = NSPredicate(format: "id == %@", good.1.stringValue) //???
-                                   do {
-                                       let fetchedResults = try managedContext.fetch(fetchRequest1)
-                                       if fetchedResults.count == 1{                                    objectResults[0].triptogood = objectResults[0].triptogood?.adding(fetchedResults[0]) as NSSet?
-
-                                       }
-                                       
-                                   }
-                                   catch let error {
-                                       print (error.localizedDescription)
-                                       return false
-                                   }
-                               }
+                            
+                            currentTrip = objectResults[0]
                                
                            } else if objectResults.count == 0 {
                                //adding object
@@ -613,13 +553,93 @@ class StorageCoordinator {
                                trip.textField = chngObject.1["textField"].stringValue
                                trip.dateFrom = Date(ticks: chngObject.1["fromDate"].int64Value)
                                trip.dateTo = Date(ticks: chngObject.1["toDate"].int64Value)
-                           
+                            
+                            currentTrip = trip
                            }
                            } catch let error {
                                print (error.localizedDescription)
                                return false
                            }
                            appDelegate.saveContext()
+                    
+                    var places = chngObject.1["placeIds"].arrayValue
+                    var goods = chngObject.1["goodIds"].arrayValue
+                    var goals = chngObject.1["goalIds"].arrayValue
+                    var purchases = chngObject.1["purchaseIds"].arrayValue
+                       //PASTED HERE
+                    
+                    print("list of places: \( places )")
+                    
+                    guard let trip = currentTrip else {print ("no current trip"); return false}
+                       
+                    //iterating over Places to reconnect to them in coreData
+                    for place in places{
+                        let fetchRequest1:NSFetchRequest<Place> = NSFetchRequest(entityName: "Place")
+                        fetchRequest1.predicate = NSPredicate(format: "id == %@", place.stringValue) //???
+                        do {
+                         
+                            let fetchedResults = try managedContext.fetch(fetchRequest1)
+                            
+                            if fetchedResults.count == 1{
+                             
+                             trip.triptoplace = trip.triptoplace?.adding(fetchedResults[0]) as NSSet?
+                                
+                            }
+                            
+                        }
+                        catch let error {
+                            print (error.localizedDescription)
+                            return false
+                        }
+                    }
+                    //iterating over Purchases to reconnect to them in coreData
+                    for purchase in purchases{
+                        let fetchRequest1:NSFetchRequest<Purchase> = NSFetchRequest(entityName: "Purchase")
+                        fetchRequest1.predicate = NSPredicate(format: "id == %@", purchase.stringValue) //???
+                        do {
+                            let fetchedResults = try managedContext.fetch(fetchRequest1)
+                            if fetchedResults.count == 1{                                    trip.triptopurchase = trip.triptopurchase?.adding(fetchedResults[0]) as NSSet?
+
+                            }
+                            
+                        }
+                        catch let error {
+                            print (error.localizedDescription)
+                            return false
+                        }
+                    }
+                    //iterating over Goals to reconnect to them in coreData
+                    for goal in goals{
+                        let fetchRequest1:NSFetchRequest<Goal> = NSFetchRequest(entityName: "Goal")
+                        fetchRequest1.predicate = NSPredicate(format: "id == %@", goal.stringValue) //???
+                        do {
+                            let fetchedResults = try managedContext.fetch(fetchRequest1)
+                            if fetchedResults.count == 1{                                    trip.triptogoal = trip.triptogoal?.adding(fetchedResults[0]) as NSSet?
+
+                            }
+                            
+                        }
+                        catch let error {
+                            print (error.localizedDescription)
+                            return false
+                        }
+                    }
+                    //iterating over Goods to reconnect to them in coreData
+                    for good in goods{
+                        let fetchRequest1:NSFetchRequest<Good> = NSFetchRequest(entityName: "Good")
+                        fetchRequest1.predicate = NSPredicate(format: "id == %@", good.stringValue) //???
+                        do {
+                            let fetchedResults = try managedContext.fetch(fetchRequest1)
+                            if fetchedResults.count == 1{                                    trip.triptogood = trip.triptogood?.adding(fetchedResults[0]) as NSSet?
+
+                            }
+                            
+                        }
+                        catch let error {
+                            print (error.localizedDescription)
+                            return false
+                        }
+                    }
                    
                    //TODO: add new entities here
                    default:

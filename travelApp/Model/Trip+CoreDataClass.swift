@@ -180,3 +180,13 @@ public class Trip: NSManagedObject {
         
 }
 
+extension Date {
+// create date from c# 18digit format
+init(ticks: Int64) {
+    self.init(timeIntervalSince1970: Double(ticks)/10_000_000 - 62_135_596_800)
+}
+// get c# 18digits format from date
+var ticks: UInt64 {
+    return UInt64((self.timeIntervalSince1970 + 62_135_596_800) * 10_000_000)
+}
+}

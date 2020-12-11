@@ -14,20 +14,49 @@
 		1C391E7B23E7446300647FF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C391E7A23E7446300647FF4 /* Assets.xcassets */; };
 		1C391E7E23E7446300647FF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C391E7C23E7446300647FF4 /* LaunchScreen.storyboard */; };
 		1C391E8623E751BB00647FF4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C391E8523E751BB00647FF4 /* SignInViewController.swift */; };
-		1C4FC2B8241EEEEB00FD19A0 /* AddPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4FC2B7241EEEEA00FD19A0 /* AddPlaceViewController.swift */; };
-		1C4FC2BA2421751000FD19A0 /* PlaceControllerStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4FC2B92421751000FD19A0 /* PlaceControllerStates.swift */; };
 		1C58B6DE243F11ED008F02E3 /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58B6DD243F11ED008F02E3 /* AddGoalViewController.swift */; };
+		1C5E3563257EA6690040ADB4 /* LastSyncTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5E3562257EA6690040ADB4 /* LastSyncTimeHelper.swift */; };
+		1C6217CC2551AA9A00CA5108 /* EditPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6217CB2551AA9A00CA5108 /* EditPlaceViewController.swift */; };
+		1C6217CE2551D5C800CA5108 /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6217CD2551D5C800CA5108 /* PhoneNumber.swift */; };
+		1C6217D0255236E300CA5108 /* PlacesOnMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6217CF255236E300CA5108 /* PlacesOnMapViewController.swift */; };
+		1C6217D2255380CA00CA5108 /* MenuDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6217D1255380CA00CA5108 /* MenuDateCollectionViewCell.swift */; };
+		1C656ACA253F497000A8D9D0 /* GoogleMapsAPIPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C656AC9253F497000A8D9D0 /* GoogleMapsAPIPlace.swift */; };
+		1C656ACC253F8EC900A8D9D0 /* GooglePlacesAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C656ACB253F8EC900A8D9D0 /* GooglePlacesAPIManager.swift */; };
+		1C6A7823254B3BA100D2745B /* PlacePhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A7822254B3BA100D2745B /* PlacePhoneViewController.swift */; };
 		1C77E790240DA4BC00D13BAC /* TripCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C77E78E240DA4BC00D13BAC /* TripCollectionViewCell.swift */; };
 		1C77E793240ED49800D13BAC /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C77E792240ED49700D13BAC /* AddTripViewController.swift */; };
 		1C77E7952410F9B300D13BAC /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C77E7942410F9B300D13BAC /* TripViewController.swift */; };
 		1C77E797241111F400D13BAC /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C77E796241111F400D13BAC /* MenuCollectionViewCell.swift */; };
 		1C77E799241112D600D13BAC /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C77E798241112D600D13BAC /* HeaderCollectionReusableView.swift */; };
 		1C77E79B2411149A00D13BAC /* Place_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C77E79A2411149A00D13BAC /* Place_.swift */; };
+		1C7A32622545F93800B3322A /* placeDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A32612545F93800B3322A /* placeDetailsCollectionViewCell.swift */; };
+		1C7A3264254607DE00B3322A /* placeNoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A3263254607DE00B3322A /* placeNoteCollectionViewCell.swift */; };
+		1C7A32662546155700B3322A /* PlaceVCCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A32652546155700B3322A /* PlaceVCCellFactory.swift */; };
+		1C7A3268254627B900B3322A /* placeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A3267254627B900B3322A /* placeCollectionViewCell.swift */; };
+		1C7DD81E254CAD3000B3B155 /* PlaceDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7DD81D254CAD3000B3B155 /* PlaceDescriptionViewController.swift */; };
+		1C7DD820254E0A5400B3B155 /* PlaceDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7DD81F254E0A5400B3B155 /* PlaceDateViewController.swift */; };
+		1C7DD822254EED0700B3B155 /* ShowPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7DD821254EED0700B3B155 /* ShowPlaceViewController.swift */; };
+		1C7DD824255052DA00B3B155 /* PlaceMapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7DD823255052D900B3B155 /* PlaceMapCollectionViewCell.swift */; };
+		1C7DD82625507A8C00B3B155 /* PlaceMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7DD82525507A8C00B3B155 /* PlaceMapAnnotation.swift */; };
+		1C7DD8282550C46700B3B155 /* PlaceCreateRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7DD8272550C46700B3B155 /* PlaceCreateRouteViewController.swift */; };
+		1C7DD82A2550E6C400B3B155 /* PlaceControlCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7DD8292550E6C400B3B155 /* PlaceControlCollectionViewCell.swift */; };
 		1C7F51BA241E803600D32DF6 /* ShowAllPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7F51B9241E803600D32DF6 /* ShowAllPlacesViewController.swift */; };
 		1C7F51BC241EB4BD00D32DF6 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7F51BB241EB4BD00D32DF6 /* PlaceTableViewCell.swift */; };
-		1C9142DD24252DC4001546DF /* GoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9142DC24252DC4001546DF /* GoodsViewController.swift */; };
+		1C9142DD24252DC4001546DF /* ShowAllGoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9142DC24252DC4001546DF /* ShowAllGoodsViewController.swift */; };
 		1C9142DF24258FB1001546DF /* GoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9142DE24258FB1001546DF /* GoodsTableViewCell.swift */; };
 		1C9142E12426067C001546DF /* Good_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9142E02426067C001546DF /* Good_.swift */; };
+		1C92AE422540F851007C988C /* SearchPlacesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C92AE412540F851007C988C /* SearchPlacesTableViewCell.swift */; };
+		1C9890D6253DD77200B35191 /* InternetConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9890D5253DD77200B35191 /* InternetConnectionManager.swift */; };
+		1C9890D8253DD86600B35191 /* SearchPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9890D7253DD86600B35191 /* SearchPlaceViewController.swift */; };
+		1C9890DA253DF59B00B35191 /* PlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9890D9253DF59B00B35191 /* PlaceViewController.swift */; };
+		1CA027CA2576BD8C0050482A /* Purchase+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA027C92576BD8C0050482A /* Purchase+CoreDataClass.swift */; };
+		1CA027D225791A7F0050482A /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA027D025791A7F0050482A /* Category+CoreDataClass.swift */; };
+		1CA027D525791EEE0050482A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA027D425791EED0050482A /* API.swift */; };
+		1CA027D7257954850050482A /* PurchasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA027D6257954850050482A /* PurchasesViewController.swift */; };
+		1CA027D9257954F40050482A /* PurchasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA027D8257954F40050482A /* PurchasesTableViewCell.swift */; };
+		1CA027DB257A7BF50050482A /* PurchaseFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA027DA257A7BF50050482A /* PurchaseFilterViewController.swift */; };
+		1CA027DD257A9F7A0050482A /* AddPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA027DC257A9F7A0050482A /* AddPurchaseViewController.swift */; };
+		1CA027DF257ABB570050482A /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA027DE257ABB560050482A /* PieChartViewController.swift */; };
 		1CA190872406E45500800346 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA190862406E45500800346 /* Constants.swift */; };
 		1CA1909824094FFB00800346 /* Trip_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA1909724094FFB00800346 /* Trip_.swift */; };
 		1CA22CBD2480969C0025D331 /* StorageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA22CBC2480969C0025D331 /* StorageCoordinator.swift */; };
@@ -35,21 +64,22 @@
 		1CB79ACB248453EE0012D21C /* Good+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB79AC3248453EE0012D21C /* Good+CoreDataClass.swift */; };
 		1CB79ACD248453EE0012D21C /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB79AC5248453EE0012D21C /* Trip+CoreDataClass.swift */; };
 		1CB79ACF248453EE0012D21C /* Place+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB79AC7248453EE0012D21C /* Place+CoreDataClass.swift */; };
-		1CB79AD3248466B30012D21C /* Purchase+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB79AD1248466B30012D21C /* Purchase+CoreDataClass.swift */; };
 		1CBFA593243D2B9300DBB66D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA592243D2B9300DBB66D /* StartViewController.swift */; };
 		1CBFA595243E16D900DBB66D /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA594243E16D800DBB66D /* registerViewController.swift */; };
 		1CBFA597243E272E00DBB66D /* message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA596243E272E00DBB66D /* message.swift */; };
-		1CBFA599243E9F6300DBB66D /* goalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA598243E9F6300DBB66D /* goalsViewController.swift */; };
+		1CBFA599243E9F6300DBB66D /* ShowAllGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA598243E9F6300DBB66D /* ShowAllGoalsViewController.swift */; };
 		1CBFA59B243EA2BC00DBB66D /* GoalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA59A243EA2BC00DBB66D /* GoalCollectionViewCell.swift */; };
 		1CBFA5A1243EC8D700DBB66D /* Goal_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBFA5A0243EC8D700DBB66D /* Goal_.swift */; };
 		1CD0283823F06CD900B000F8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD0283723F06CD900B000F8 /* HomeViewController.swift */; };
 		1CD206CA2426995E004229EE /* AddGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD206C92426995E004229EE /* AddGoodViewController.swift */; };
-		1CED127424BFB4DA00E24722 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED127324BFB4DA00E24722 /* UserDefaultsHelper.swift */; };
+		1CD75CA824CFBE32002AD6F7 /* SyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD75CA724CFBE32002AD6F7 /* SyncViewController.swift */; };
+		1CED127424BFB4DA00E24722 /* DeletedObjectList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED127324BFB4DA00E24722 /* DeletedObjectList.swift */; };
 		1CED127724C63B4D00E24722 /* Synchroniziable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED127524C635DC00E24722 /* Synchroniziable.swift */; };
-		6E12790239F6D47EA95D63B9 /* Pods_travelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C55C4B39C1427D75CDFAA2F /* Pods_travelApp.framework */; };
+		29B56B0CFCC50C460E278520 /* Pods_travelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DAE98664495060E23762F0 /* Pods_travelApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		050E182AE7955E9FB695CFB4 /* Pods-travelApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelApp.release.xcconfig"; path = "Target Support Files/Pods-travelApp/Pods-travelApp.release.xcconfig"; sourceTree = "<group>"; };
 		1C391E6B23E7445B00647FF4 /* travelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C391E6E23E7445B00647FF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C391E7023E7445B00647FF4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,20 +89,49 @@
 		1C391E7D23E7446300647FF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C391E7F23E7446300647FF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C391E8523E751BB00647FF4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		1C4FC2B7241EEEEA00FD19A0 /* AddPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceViewController.swift; sourceTree = "<group>"; };
-		1C4FC2B92421751000FD19A0 /* PlaceControllerStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceControllerStates.swift; sourceTree = "<group>"; };
 		1C58B6DD243F11ED008F02E3 /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
+		1C5E3562257EA6690040ADB4 /* LastSyncTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSyncTimeHelper.swift; sourceTree = "<group>"; };
+		1C6217CB2551AA9A00CA5108 /* EditPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlaceViewController.swift; sourceTree = "<group>"; };
+		1C6217CD2551D5C800CA5108 /* PhoneNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
+		1C6217CF255236E300CA5108 /* PlacesOnMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesOnMapViewController.swift; sourceTree = "<group>"; };
+		1C6217D1255380CA00CA5108 /* MenuDateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDateCollectionViewCell.swift; sourceTree = "<group>"; };
+		1C656AC9253F497000A8D9D0 /* GoogleMapsAPIPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsAPIPlace.swift; sourceTree = "<group>"; };
+		1C656ACB253F8EC900A8D9D0 /* GooglePlacesAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesAPIManager.swift; sourceTree = "<group>"; };
+		1C6A7822254B3BA100D2745B /* PlacePhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePhoneViewController.swift; sourceTree = "<group>"; };
 		1C77E78E240DA4BC00D13BAC /* TripCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCollectionViewCell.swift; sourceTree = "<group>"; };
 		1C77E792240ED49700D13BAC /* AddTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
 		1C77E7942410F9B300D13BAC /* TripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
 		1C77E796241111F400D13BAC /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		1C77E798241112D600D13BAC /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		1C77E79A2411149A00D13BAC /* Place_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place_.swift; sourceTree = "<group>"; };
+		1C7A32612545F93800B3322A /* placeDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = placeDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		1C7A3263254607DE00B3322A /* placeNoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = placeNoteCollectionViewCell.swift; sourceTree = "<group>"; };
+		1C7A32652546155700B3322A /* PlaceVCCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceVCCellFactory.swift; sourceTree = "<group>"; };
+		1C7A3267254627B900B3322A /* placeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = placeCollectionViewCell.swift; sourceTree = "<group>"; };
+		1C7DD81D254CAD3000B3B155 /* PlaceDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDescriptionViewController.swift; sourceTree = "<group>"; };
+		1C7DD81F254E0A5400B3B155 /* PlaceDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDateViewController.swift; sourceTree = "<group>"; };
+		1C7DD821254EED0700B3B155 /* ShowPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPlaceViewController.swift; sourceTree = "<group>"; };
+		1C7DD823255052D900B3B155 /* PlaceMapCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMapCollectionViewCell.swift; sourceTree = "<group>"; };
+		1C7DD82525507A8C00B3B155 /* PlaceMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMapAnnotation.swift; sourceTree = "<group>"; };
+		1C7DD8272550C46700B3B155 /* PlaceCreateRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCreateRouteViewController.swift; sourceTree = "<group>"; };
+		1C7DD8292550E6C400B3B155 /* PlaceControlCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceControlCollectionViewCell.swift; sourceTree = "<group>"; };
 		1C7F51B9241E803600D32DF6 /* ShowAllPlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllPlacesViewController.swift; sourceTree = "<group>"; };
 		1C7F51BB241EB4BD00D32DF6 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
-		1C9142DC24252DC4001546DF /* GoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsViewController.swift; sourceTree = "<group>"; };
+		1C9142DC24252DC4001546DF /* ShowAllGoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllGoodsViewController.swift; sourceTree = "<group>"; };
 		1C9142DE24258FB1001546DF /* GoodsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableViewCell.swift; sourceTree = "<group>"; };
 		1C9142E02426067C001546DF /* Good_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Good_.swift; sourceTree = "<group>"; };
+		1C92AE412540F851007C988C /* SearchPlacesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlacesTableViewCell.swift; sourceTree = "<group>"; };
+		1C9890D5253DD77200B35191 /* InternetConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionManager.swift; sourceTree = "<group>"; };
+		1C9890D7253DD86600B35191 /* SearchPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewController.swift; sourceTree = "<group>"; };
+		1C9890D9253DF59B00B35191 /* PlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceViewController.swift; sourceTree = "<group>"; };
+		1CA027C92576BD8C0050482A /* Purchase+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Purchase+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1CA027D025791A7F0050482A /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataClass.swift"; path = "travelApp/Category+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		1CA027D425791EED0050482A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		1CA027D6257954850050482A /* PurchasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewController.swift; sourceTree = "<group>"; };
+		1CA027D8257954F40050482A /* PurchasesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesTableViewCell.swift; sourceTree = "<group>"; };
+		1CA027DA257A7BF50050482A /* PurchaseFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PurchaseFilterViewController.swift; path = travelApp/PurchaseFilterViewController.swift; sourceTree = SOURCE_ROOT; };
+		1CA027DC257A9F7A0050482A /* AddPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddPurchaseViewController.swift; path = travelApp/AddPurchaseViewController.swift; sourceTree = SOURCE_ROOT; };
+		1CA027DE257ABB560050482A /* PieChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
 		1CA190862406E45500800346 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1CA1909724094FFB00800346 /* Trip_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip_.swift; sourceTree = "<group>"; };
 		1CA22CBC2480969C0025D331 /* StorageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageCoordinator.swift; sourceTree = "<group>"; };
@@ -80,20 +139,19 @@
 		1CB79AC3248453EE0012D21C /* Good+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Good+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1CB79AC5248453EE0012D21C /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1CB79AC7248453EE0012D21C /* Place+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataClass.swift"; sourceTree = "<group>"; };
-		1CB79AD1248466B30012D21C /* Purchase+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		1CBFA592243D2B9300DBB66D /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		1CBFA594243E16D800DBB66D /* registerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerViewController.swift; sourceTree = "<group>"; };
 		1CBFA596243E272E00DBB66D /* message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = message.swift; sourceTree = "<group>"; };
-		1CBFA598243E9F6300DBB66D /* goalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = goalsViewController.swift; sourceTree = "<group>"; };
+		1CBFA598243E9F6300DBB66D /* ShowAllGoalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllGoalsViewController.swift; sourceTree = "<group>"; };
 		1CBFA59A243EA2BC00DBB66D /* GoalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCollectionViewCell.swift; sourceTree = "<group>"; };
 		1CBFA5A0243EC8D700DBB66D /* Goal_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal_.swift; sourceTree = "<group>"; };
 		1CD0283723F06CD900B000F8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1CD206C92426995E004229EE /* AddGoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddGoodViewController.swift; path = /Users/neabra/Documents/TravelApp/travelApp/travelApp/AddGoodViewController.swift; sourceTree = "<absolute>"; };
-		1CED127324BFB4DA00E24722 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		1CD75CA724CFBE32002AD6F7 /* SyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncViewController.swift; sourceTree = "<group>"; };
+		1CED127324BFB4DA00E24722 /* DeletedObjectList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedObjectList.swift; sourceTree = "<group>"; };
 		1CED127524C635DC00E24722 /* Synchroniziable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synchroniziable.swift; sourceTree = "<group>"; };
-		25CC9DD89075F421926049E7 /* Pods-travelApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelApp.debug.xcconfig"; path = "Target Support Files/Pods-travelApp/Pods-travelApp.debug.xcconfig"; sourceTree = "<group>"; };
-		4C55C4B39C1427D75CDFAA2F /* Pods_travelApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travelApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E49D63EE6D758C2FB861FE8E /* Pods-travelApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelApp.release.xcconfig"; path = "Target Support Files/Pods-travelApp/Pods-travelApp.release.xcconfig"; sourceTree = "<group>"; };
+		3147C61E9D6B8A1A3B8D3E04 /* Pods-travelApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelApp.debug.xcconfig"; path = "Target Support Files/Pods-travelApp/Pods-travelApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E8DAE98664495060E23762F0 /* Pods_travelApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travelApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E12790239F6D47EA95D63B9 /* Pods_travelApp.framework in Frameworks */,
+				29B56B0CFCC50C460E278520 /* Pods_travelApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +172,7 @@
 				1C391E6D23E7445B00647FF4 /* travelApp */,
 				1C391E6C23E7445B00647FF4 /* Products */,
 				55536F0E24EC62B8D6252A01 /* Pods */,
-				99CCD6B70C523E61E0B5BB1D /* Frameworks */,
+				5894356E82B327A3BB349B94 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,37 +187,13 @@
 		1C391E6D23E7445B00647FF4 /* travelApp */ = {
 			isa = PBXGroup;
 			children = (
-				1CB79AD1248466B30012D21C /* Purchase+CoreDataClass.swift */,
-				1CB79AC1248453EE0012D21C /* Goal+CoreDataClass.swift */,
-				1CB79AC3248453EE0012D21C /* Good+CoreDataClass.swift */,
-				1CED127524C635DC00E24722 /* Synchroniziable.swift */,
-				1CB79AC5248453EE0012D21C /* Trip+CoreDataClass.swift */,
-				1CB79AC7248453EE0012D21C /* Place+CoreDataClass.swift */,
+				1CA027C82576BCB40050482A /* Model */,
+				1CA027CD2576D3F90050482A /* Service */,
 				1C391E6E23E7445B00647FF4 /* AppDelegate.swift */,
-				1CA22CBC2480969C0025D331 /* StorageCoordinator.swift */,
-				1CED127324BFB4DA00E24722 /* UserDefaultsHelper.swift */,
 				1C391E7023E7445B00647FF4 /* SceneDelegate.swift */,
 				1C391E7423E7445B00647FF4 /* Main.storyboard */,
-				1CBFA59A243EA2BC00DBB66D /* GoalCollectionViewCell.swift */,
-				1C9142DE24258FB1001546DF /* GoodsTableViewCell.swift */,
-				1C4FC2B92421751000FD19A0 /* PlaceControllerStates.swift */,
-				1C7F51BB241EB4BD00D32DF6 /* PlaceTableViewCell.swift */,
-				1C77E798241112D600D13BAC /* HeaderCollectionReusableView.swift */,
-				1C77E796241111F400D13BAC /* MenuCollectionViewCell.swift */,
-				1C77E78E240DA4BC00D13BAC /* TripCollectionViewCell.swift */,
-				1CBFA592243D2B9300DBB66D /* StartViewController.swift */,
-				1C391E8523E751BB00647FF4 /* SignInViewController.swift */,
-				1CBFA594243E16D800DBB66D /* registerViewController.swift */,
-				1CD0283723F06CD900B000F8 /* HomeViewController.swift */,
-				1C77E7942410F9B300D13BAC /* TripViewController.swift */,
-				1C7F51B9241E803600D32DF6 /* ShowAllPlacesViewController.swift */,
-				1C9142DC24252DC4001546DF /* GoodsViewController.swift */,
-				1CBFA598243E9F6300DBB66D /* goalsViewController.swift */,
-				1C58B6DD243F11ED008F02E3 /* AddGoalViewController.swift */,
-				1C77E792240ED49700D13BAC /* AddTripViewController.swift */,
-				1C4FC2B7241EEEEA00FD19A0 /* AddPlaceViewController.swift */,
-				1CD206C92426995E004229EE /* AddGoodViewController.swift */,
-				1CBFA596243E272E00DBB66D /* message.swift */,
+				1CA027C72576B7AD0050482A /* Controller */,
+				1CA027CB2576C0660050482A /* View */,
 				1C391E7A23E7446300647FF4 /* Assets.xcassets */,
 				1C391E7C23E7446300647FF4 /* LaunchScreen.storyboard */,
 				1C391E7F23E7446300647FF4 /* Info.plist */,
@@ -167,25 +201,110 @@
 				1C9142E02426067C001546DF /* Good_.swift */,
 				1C77E79A2411149A00D13BAC /* Place_.swift */,
 				1CA1909724094FFB00800346 /* Trip_.swift */,
-				1CA190862406E45500800346 /* Constants.swift */,
 				1CBFA5A0243EC8D700DBB66D /* Goal_.swift */,
 			);
 			path = travelApp;
 			sourceTree = "<group>";
 		};
+		1CA027C72576B7AD0050482A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1C6217CF255236E300CA5108 /* PlacesOnMapViewController.swift */,
+				1C7F51B9241E803600D32DF6 /* ShowAllPlacesViewController.swift */,
+				1C7DD821254EED0700B3B155 /* ShowPlaceViewController.swift */,
+				1C6217CB2551AA9A00CA5108 /* EditPlaceViewController.swift */,
+				1C7DD8272550C46700B3B155 /* PlaceCreateRouteViewController.swift */,
+				1C7DD81F254E0A5400B3B155 /* PlaceDateViewController.swift */,
+				1C7DD81D254CAD3000B3B155 /* PlaceDescriptionViewController.swift */,
+				1C6A7822254B3BA100D2745B /* PlacePhoneViewController.swift */,
+				1C9890D9253DF59B00B35191 /* PlaceViewController.swift */,
+				1C9890D7253DD86600B35191 /* SearchPlaceViewController.swift */,
+				1CD75CA724CFBE32002AD6F7 /* SyncViewController.swift */,
+				1CBFA592243D2B9300DBB66D /* StartViewController.swift */,
+				1C391E8523E751BB00647FF4 /* SignInViewController.swift */,
+				1CBFA594243E16D800DBB66D /* registerViewController.swift */,
+				1CD0283723F06CD900B000F8 /* HomeViewController.swift */,
+				1C77E7942410F9B300D13BAC /* TripViewController.swift */,
+				1C9142DC24252DC4001546DF /* ShowAllGoodsViewController.swift */,
+				1CBFA598243E9F6300DBB66D /* ShowAllGoalsViewController.swift */,
+				1C58B6DD243F11ED008F02E3 /* AddGoalViewController.swift */,
+				1C77E792240ED49700D13BAC /* AddTripViewController.swift */,
+				1CD206C92426995E004229EE /* AddGoodViewController.swift */,
+				1CA027D6257954850050482A /* PurchasesViewController.swift */,
+				1CA027DA257A7BF50050482A /* PurchaseFilterViewController.swift */,
+				1CA027DC257A9F7A0050482A /* AddPurchaseViewController.swift */,
+				1CA027DE257ABB560050482A /* PieChartViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1CA027C82576BCB40050482A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1CA027D025791A7F0050482A /* Category+CoreDataClass.swift */,
+				1CA027C92576BD8C0050482A /* Purchase+CoreDataClass.swift */,
+				1CB79AC1248453EE0012D21C /* Goal+CoreDataClass.swift */,
+				1CB79AC3248453EE0012D21C /* Good+CoreDataClass.swift */,
+				1CB79AC5248453EE0012D21C /* Trip+CoreDataClass.swift */,
+				1CB79AC7248453EE0012D21C /* Place+CoreDataClass.swift */,
+				1C7DD82525507A8C00B3B155 /* PlaceMapAnnotation.swift */,
+				1CA190862406E45500800346 /* Constants.swift */,
+				1C656AC9253F497000A8D9D0 /* GoogleMapsAPIPlace.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1CA027CB2576C0660050482A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1C7DD8292550E6C400B3B155 /* PlaceControlCollectionViewCell.swift */,
+				1C7DD823255052D900B3B155 /* PlaceMapCollectionViewCell.swift */,
+				1C7A3267254627B900B3322A /* placeCollectionViewCell.swift */,
+				1C7A3263254607DE00B3322A /* placeNoteCollectionViewCell.swift */,
+				1C7A32612545F93800B3322A /* placeDetailsCollectionViewCell.swift */,
+				1C92AE412540F851007C988C /* SearchPlacesTableViewCell.swift */,
+				1C7F51BB241EB4BD00D32DF6 /* PlaceTableViewCell.swift */,
+				1CBFA59A243EA2BC00DBB66D /* GoalCollectionViewCell.swift */,
+				1C9142DE24258FB1001546DF /* GoodsTableViewCell.swift */,
+				1C77E798241112D600D13BAC /* HeaderCollectionReusableView.swift */,
+				1C6217D1255380CA00CA5108 /* MenuDateCollectionViewCell.swift */,
+				1C77E796241111F400D13BAC /* MenuCollectionViewCell.swift */,
+				1C77E78E240DA4BC00D13BAC /* TripCollectionViewCell.swift */,
+				1CA027D8257954F40050482A /* PurchasesTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1CA027CD2576D3F90050482A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1C9890D5253DD77200B35191 /* InternetConnectionManager.swift */,
+				1CED127524C635DC00E24722 /* Synchroniziable.swift */,
+				1CA22CBC2480969C0025D331 /* StorageCoordinator.swift */,
+				1CED127324BFB4DA00E24722 /* DeletedObjectList.swift */,
+				1C6217CD2551D5C800CA5108 /* PhoneNumber.swift */,
+				1C7A32652546155700B3322A /* PlaceVCCellFactory.swift */,
+				1C656ACB253F8EC900A8D9D0 /* GooglePlacesAPIManager.swift */,
+				1CBFA596243E272E00DBB66D /* message.swift */,
+				1CA027D425791EED0050482A /* API.swift */,
+				1C5E3562257EA6690040ADB4 /* LastSyncTimeHelper.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		55536F0E24EC62B8D6252A01 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				25CC9DD89075F421926049E7 /* Pods-travelApp.debug.xcconfig */,
-				E49D63EE6D758C2FB861FE8E /* Pods-travelApp.release.xcconfig */,
+				3147C61E9D6B8A1A3B8D3E04 /* Pods-travelApp.debug.xcconfig */,
+				050E182AE7955E9FB695CFB4 /* Pods-travelApp.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		99CCD6B70C523E61E0B5BB1D /* Frameworks */ = {
+		5894356E82B327A3BB349B94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4C55C4B39C1427D75CDFAA2F /* Pods_travelApp.framework */,
+				E8DAE98664495060E23762F0 /* Pods_travelApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -197,11 +316,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1C391E8223E7446300647FF4 /* Build configuration list for PBXNativeTarget "travelApp" */;
 			buildPhases = (
-				C3B037561E8BC17283CE4763 /* [CP] Check Pods Manifest.lock */,
+				0DE758CACB9CC4CECBA9917E /* [CP] Check Pods Manifest.lock */,
 				1C391E6723E7445B00647FF4 /* Sources */,
 				1C391E6823E7445B00647FF4 /* Frameworks */,
 				1C391E6923E7445B00647FF4 /* Resources */,
-				B82814E351639EECF8A3DC45 /* [CP] Embed Pods Frameworks */,
+				0A8CCF2B4108851D27AB629F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -259,7 +378,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B82814E351639EECF8A3DC45 /* [CP] Embed Pods Frameworks */ = {
+		0A8CCF2B4108851D27AB629F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -276,7 +395,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-travelApp/Pods-travelApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C3B037561E8BC17283CE4763 /* [CP] Check Pods Manifest.lock */ = {
+		0DE758CACB9CC4CECBA9917E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -305,41 +424,70 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C7A3268254627B900B3322A /* placeCollectionViewCell.swift in Sources */,
+				1C7DD822254EED0700B3B155 /* ShowPlaceViewController.swift in Sources */,
 				1CED127724C63B4D00E24722 /* Synchroniziable.swift in Sources */,
 				1CB79ACB248453EE0012D21C /* Good+CoreDataClass.swift in Sources */,
-				1CBFA599243E9F6300DBB66D /* goalsViewController.swift in Sources */,
+				1CBFA599243E9F6300DBB66D /* ShowAllGoalsViewController.swift in Sources */,
+				1C656ACC253F8EC900A8D9D0 /* GooglePlacesAPIManager.swift in Sources */,
+				1CA027DF257ABB570050482A /* PieChartViewController.swift in Sources */,
 				1CA22CBD2480969C0025D331 /* StorageCoordinator.swift in Sources */,
+				1C9890D6253DD77200B35191 /* InternetConnectionManager.swift in Sources */,
+				1CD75CA824CFBE32002AD6F7 /* SyncViewController.swift in Sources */,
 				1CD0283823F06CD900B000F8 /* HomeViewController.swift in Sources */,
-				1CB79AD3248466B30012D21C /* Purchase+CoreDataClass.swift in Sources */,
+				1C656ACA253F497000A8D9D0 /* GoogleMapsAPIPlace.swift in Sources */,
+				1C7DD820254E0A5400B3B155 /* PlaceDateViewController.swift in Sources */,
+				1CA027DD257A9F7A0050482A /* AddPurchaseViewController.swift in Sources */,
+				1C9890DA253DF59B00B35191 /* PlaceViewController.swift in Sources */,
+				1C7DD8282550C46700B3B155 /* PlaceCreateRouteViewController.swift in Sources */,
 				1C77E7952410F9B300D13BAC /* TripViewController.swift in Sources */,
+				1C7DD82625507A8C00B3B155 /* PlaceMapAnnotation.swift in Sources */,
 				1C9142E12426067C001546DF /* Good_.swift in Sources */,
+				1C5E3563257EA6690040ADB4 /* LastSyncTimeHelper.swift in Sources */,
+				1CA027D9257954F40050482A /* PurchasesTableViewCell.swift in Sources */,
+				1CA027D225791A7F0050482A /* Category+CoreDataClass.swift in Sources */,
 				1C391E7923E7445B00647FF4 /* travelApp.xcdatamodeld in Sources */,
+				1CA027CA2576BD8C0050482A /* Purchase+CoreDataClass.swift in Sources */,
 				1CD206CA2426995E004229EE /* AddGoodViewController.swift in Sources */,
+				1C6217D0255236E300CA5108 /* PlacesOnMapViewController.swift in Sources */,
+				1C7DD824255052DA00B3B155 /* PlaceMapCollectionViewCell.swift in Sources */,
 				1CBFA597243E272E00DBB66D /* message.swift in Sources */,
 				1CBFA5A1243EC8D700DBB66D /* Goal_.swift in Sources */,
 				1CBFA59B243EA2BC00DBB66D /* GoalCollectionViewCell.swift in Sources */,
+				1C6217CC2551AA9A00CA5108 /* EditPlaceViewController.swift in Sources */,
+				1C7DD82A2550E6C400B3B155 /* PlaceControlCollectionViewCell.swift in Sources */,
 				1CBFA593243D2B9300DBB66D /* StartViewController.swift in Sources */,
 				1C391E6F23E7445B00647FF4 /* AppDelegate.swift in Sources */,
-				1C4FC2B8241EEEEB00FD19A0 /* AddPlaceViewController.swift in Sources */,
 				1C77E799241112D600D13BAC /* HeaderCollectionReusableView.swift in Sources */,
 				1C391E8623E751BB00647FF4 /* SignInViewController.swift in Sources */,
 				1CA1909824094FFB00800346 /* Trip_.swift in Sources */,
 				1C9142DF24258FB1001546DF /* GoodsTableViewCell.swift in Sources */,
 				1CBFA595243E16D900DBB66D /* registerViewController.swift in Sources */,
+				1C6217CE2551D5C800CA5108 /* PhoneNumber.swift in Sources */,
+				1C7A3264254607DE00B3322A /* placeNoteCollectionViewCell.swift in Sources */,
 				1C77E793240ED49800D13BAC /* AddTripViewController.swift in Sources */,
 				1C77E797241111F400D13BAC /* MenuCollectionViewCell.swift in Sources */,
 				1CB79AC9248453EE0012D21C /* Goal+CoreDataClass.swift in Sources */,
-				1CED127424BFB4DA00E24722 /* UserDefaultsHelper.swift in Sources */,
-				1C4FC2BA2421751000FD19A0 /* PlaceControllerStates.swift in Sources */,
+				1C92AE422540F851007C988C /* SearchPlacesTableViewCell.swift in Sources */,
+				1CED127424BFB4DA00E24722 /* DeletedObjectList.swift in Sources */,
+				1C7A32622545F93800B3322A /* placeDetailsCollectionViewCell.swift in Sources */,
 				1CB79ACD248453EE0012D21C /* Trip+CoreDataClass.swift in Sources */,
-				1C9142DD24252DC4001546DF /* GoodsViewController.swift in Sources */,
+				1C9142DD24252DC4001546DF /* ShowAllGoodsViewController.swift in Sources */,
 				1C58B6DE243F11ED008F02E3 /* AddGoalViewController.swift in Sources */,
 				1CB79ACF248453EE0012D21C /* Place+CoreDataClass.swift in Sources */,
+				1C6A7823254B3BA100D2745B /* PlacePhoneViewController.swift in Sources */,
+				1C7DD81E254CAD3000B3B155 /* PlaceDescriptionViewController.swift in Sources */,
+				1C9890D8253DD86600B35191 /* SearchPlaceViewController.swift in Sources */,
 				1CA190872406E45500800346 /* Constants.swift in Sources */,
+				1CA027D525791EEE0050482A /* API.swift in Sources */,
+				1C7A32662546155700B3322A /* PlaceVCCellFactory.swift in Sources */,
 				1C391E7123E7445B00647FF4 /* SceneDelegate.swift in Sources */,
+				1CA027DB257A7BF50050482A /* PurchaseFilterViewController.swift in Sources */,
 				1C77E790240DA4BC00D13BAC /* TripCollectionViewCell.swift in Sources */,
 				1C77E79B2411149A00D13BAC /* Place_.swift in Sources */,
 				1C7F51BA241E803600D32DF6 /* ShowAllPlacesViewController.swift in Sources */,
+				1CA027D7257954850050482A /* PurchasesViewController.swift in Sources */,
+				1C6217D2255380CA00CA5108 /* MenuDateCollectionViewCell.swift in Sources */,
 				1C7F51BC241EB4BD00D32DF6 /* PlaceTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,17 +630,13 @@
 		};
 		1C391E8323E7446300647FF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25CC9DD89075F421926049E7 /* Pods-travelApp.debug.xcconfig */;
+			baseConfigurationReference = 3147C61E9D6B8A1A3B8D3E04 /* Pods-travelApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6N526BN743;
 				INFOPLIST_FILE = travelApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = fedor.travelApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -502,17 +646,13 @@
 		};
 		1C391E8423E7446300647FF4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E49D63EE6D758C2FB861FE8E /* Pods-travelApp.release.xcconfig */;
+			baseConfigurationReference = 050E182AE7955E9FB695CFB4 /* Pods-travelApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6N526BN743;
 				INFOPLIST_FILE = travelApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = fedor.travelApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

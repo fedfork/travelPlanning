@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:json">
+   </FileRef>
+   <FileRef
+      location = "group:travelApp/PlaceDescriptionViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:travelApp.xcodeproj">
    </FileRef>
    <FileRef

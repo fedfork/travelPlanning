@@ -10,15 +10,17 @@ import SwiftKeychainWrapper
 import SwiftyJSON
 
 class AddGoodViewController: UIViewController {
-    
-    var delegate: refreshableDelegate?
-    var good: Good_?
-    var tripId: String?
+
+    var good: Good?
+    var trip: Trip?
+    var value: Int?
+    var delegate : GoodsViewControllerDelegate?
     
     @IBAction func backButton(_ sender: Any) {
-        delegate?.refresh()
+        // TODO: delegate was here
         self.dismiss(animated: true, completion: nil)
     }
+    @IBOutlet var stepper: UIStepper!
     
     @IBAction func saveButton(_ sender: Any) {
         addGoodAndLeave()
@@ -26,98 +28,29 @@ class AddGoodViewController: UIViewController {
     
     @IBOutlet var nameLabel: UITextField!
     
+   
+    @IBOutlet var counterLabel: UILabel!
+    
+    @IBAction func stepperValueChanged(_ sender: Any) {
+        counterLabel.text = "\(stepper.intValue)"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
+        stepper.value = 1.0
     }
     
     func addGoodAndLeave() {
-            
-        var good = Good_(name: nameLabel.text ?? "", description: "", id: "", isTaken: false)
-                
-                
-            
-            guard let tripId = tripId else { print ("bad trip"); return }
-            
-            let tok = KeychainWrapper.standard.string(forKey: "accessToken")
-            guard let token = tok else {
-                print ("ubable to read from the keychain")
-    //            self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-                return
-            }
-            
-            
-            var requestStr = Global.apiUrl + "/good/upsertwithtripid?token="+token
-            
-            print (requestStr)
-            
-            let myUrl = URL(string: requestStr)
-            
-            var request = URLRequest(url:myUrl!)
-            
-            request.httpMethod = "POST"
-            request.addValue ("application/json", forHTTPHeaderField: "content-type")
-            var newPlaceJson:JSON = [:]
-            newPlaceJson["name"] = JSON(good.name)
-            newPlaceJson["isTook"] = JSON(good.isTaken)
-            newPlaceJson["tripId"] = JSON(tripId)
-            newPlaceJson["description"] = JSON(good.description)
-            
-            print (newPlaceJson)
-            
-            do {
-               request.httpBody = try newPlaceJson.rawData()
-           } catch {
-               print ("Error \(error). No request performed, terminating")
-               return
-           }
-            
-            let group = DispatchGroup()
-            group.enter()
-            //performing request to get
-            
-            var errorFlag = false
-            
-        // hz
-            let task = URLSession.shared.dataTask (with: request, completionHandler: { data, response, error in
-
-    //                    self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-
-                if error != nil || data == nil {
-        //          self.displayMessage(title: "Ошибка", message: "От сервера получен некорректный ответ")
-                    errorFlag = true
-                    group.leave()
-                    return
-                }
-                
-                let receivedJson = JSON (data!)
-                print (receivedJson)
-                
-                if !( receivedJson["id"].exists() ) {
-                    errorFlag = true
-                }
-                
-                group.leave()
-            })
-            
-            task.resume()
-            
-            group.notify(queue: .main) {
-                // leaving current view controller
-                if !errorFlag {
-                    
-                    self.delegate!.refresh()
-                    
-                    self.dismiss(animated: true, completion: nil)
-                } else {
-                    // add message here
-                    print ("error occured and unable to addPlace. nothing done")
-                }
-            }
-            
+        guard let name = nameLabel.text else {return}
+        guard let trip = trip else {return}
+        if name == "" {// TODO: show message
+            return
         }
-    
+        Good.addNewGoodToTrip(trip: trip, name: name, descript: "", isTaken: false, count: stepper.intValue)
+        delegate?.update()
+        self.dismiss(animated: true, completion: nil)
+    }
     
     /*
     // MARK: - Navigation
@@ -129,4 +62,10 @@ class AddGoodViewController: UIViewController {
     }
     */
 
+}
+
+extension UIStepper {
+    var intValue: Int {
+        return Int(self.value)
+    }
 }

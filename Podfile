@@ -12,6 +12,9 @@ target 'travelApp' do
 
   pod 'SwiftKeychainWrapper', '~> 3.4'
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'GoogleAPIClientForREST'
+  pod 'PieCharts'
+  pod 'ChartLegends'
 
   # Pods for travelApp
 

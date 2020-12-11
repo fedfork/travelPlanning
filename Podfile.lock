@@ -1,21 +1,43 @@
 PODS:
+  - ChartLegends (0.0.6)
+  - GoogleAPIClientForREST (1.4.3):
+    - GoogleAPIClientForREST/Core (= 1.4.3)
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/Core (1.4.3):
+    - GTMSessionFetcher (>= 1.1.7)
+  - GTMSessionFetcher (1.4.0):
+    - GTMSessionFetcher/Full (= 1.4.0)
+  - GTMSessionFetcher/Core (1.4.0)
+  - GTMSessionFetcher/Full (1.4.0):
+    - GTMSessionFetcher/Core (= 1.4.0)
+  - PieCharts (0.0.7)
   - SwiftKeychainWrapper (3.4.0)
-  - SwiftyJSON (4.2.0)
+  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
+  - ChartLegends
+  - GoogleAPIClientForREST
+  - PieCharts
   - SwiftKeychainWrapper (~> 3.4)
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - SwiftyJSON
-  trunk:
+    - ChartLegends
+    - GoogleAPIClientForREST
+    - GTMSessionFetcher
+    - PieCharts
     - SwiftKeychainWrapper
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
+  ChartLegends: bd0b58d74772f35dc14fc6a3ff245cccf3204a59
+  GoogleAPIClientForREST: e2d95a611ac06a90d143c93bfd8597719f8b0938
+  GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  PieCharts: 30e50dfa7dc19e5b84e9878d32089673ef5d0453
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 4d0a5e52286524ba96547b40d42e9ea12d9b12a2
+PODFILE CHECKSUM: d9e06d3a95b5ffb05c47294beb8027476355fdd0
 
 COCOAPODS: 1.8.4

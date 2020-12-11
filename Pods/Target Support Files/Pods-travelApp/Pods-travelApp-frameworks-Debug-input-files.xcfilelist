@@ -1,3 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-travelApp/Pods-travelApp-frameworks.sh
+${BUILT_PRODUCTS_DIR}/ChartLegends/ChartLegends.framework
+${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework
+${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework
+${BUILT_PRODUCTS_DIR}/PieCharts/PieCharts.framework
 ${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework

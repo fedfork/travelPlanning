@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19A603" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="category">
+        <attribute name="descript" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Goal" representedClassName="Goal" syncable="YES" codeGenerationType="category">
         <attribute name="descript" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -7,7 +12,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="userId" attributeType="String"/>
         <attribute name="wasChanged" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="goaltotrip" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Trip" inverseName="triptogoal" inverseEntity="Trip"/>
+        <relationship name="goaltotrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="triptogoal" inverseEntity="Trip"/>
     </entity>
     <entity name="Good" representedClassName="Good" syncable="YES" codeGenerationType="category">
         <attribute name="count" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -17,7 +22,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="userId" attributeType="String"/>
         <attribute name="wasChanged" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="goodtotrip" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Trip" inverseName="triptogood" inverseEntity="Trip"/>
+        <relationship name="goodtotrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="triptogood" inverseEntity="Trip"/>
     </entity>
     <entity name="Place" representedClassName="Place" syncable="YES" codeGenerationType="category">
         <attribute name="adress" attributeType="String"/>
@@ -26,9 +31,10 @@
         <attribute name="descript" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
         <attribute name="userId" attributeType="String"/>
         <attribute name="wasChanged" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="placetotrip" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Trip" inverseName="triptoplace" inverseEntity="Trip"/>
+        <relationship name="placetotrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="triptoplace" inverseEntity="Trip"/>
     </entity>
     <entity name="Purchase" representedClassName="Purchase" syncable="YES" codeGenerationType="category">
         <attribute name="categoryId" attributeType="String"/>
@@ -39,7 +45,7 @@
         <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="userId" attributeType="String"/>
         <attribute name="wasChanged" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="purchasetotrip" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Trip" inverseName="triptopurchase" inverseEntity="Trip"/>
+        <relationship name="purchasetotrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="triptopurchase" inverseEntity="Trip"/>
     </entity>
     <entity name="Trip" representedClassName="Trip" syncable="YES" codeGenerationType="category">
         <attribute name="dateFrom" attributeType="Date" usesScalarValueType="NO"/>
@@ -49,16 +55,17 @@
         <attribute name="textField" attributeType="String"/>
         <attribute name="userId" attributeType="String"/>
         <attribute name="wasChanged" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="triptogoal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Goal" inverseName="goaltotrip" inverseEntity="Goal"/>
-        <relationship name="triptogood" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Good" inverseName="goodtotrip" inverseEntity="Good"/>
-        <relationship name="triptoplace" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="placetotrip" inverseEntity="Place"/>
-        <relationship name="triptopurchase" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Purchase" inverseName="purchasetotrip" inverseEntity="Purchase"/>
+        <relationship name="triptogoal" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Goal" inverseName="goaltotrip" inverseEntity="Goal"/>
+        <relationship name="triptogood" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Good" inverseName="goodtotrip" inverseEntity="Good"/>
+        <relationship name="triptoplace" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Place" inverseName="placetotrip" inverseEntity="Place"/>
+        <relationship name="triptopurchase" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Purchase" inverseName="purchasetotrip" inverseEntity="Purchase"/>
     </entity>
     <elements>
         <element name="Goal" positionX="0" positionY="108" width="128" height="148"/>
         <element name="Good" positionX="-36" positionY="72" width="128" height="163"/>
-        <element name="Place" positionX="-54" positionY="36" width="128" height="178"/>
+        <element name="Place" positionX="-54" positionY="36" width="128" height="193"/>
         <element name="Purchase" positionX="-36" positionY="99" width="128" height="178"/>
-        <element name="Trip" positionX="-63" positionY="-18" width="128" height="28"/>
+        <element name="Trip" positionX="-63" positionY="-18" width="128" height="208"/>
+        <element name="Category" positionX="-36" positionY="117" width="128" height="88"/>
     </elements>
 </model>

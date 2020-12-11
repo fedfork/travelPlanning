@@ -1,0 +1,16 @@
+{
+   "candidates" : [
+      {
+         "formatted_address" : "140 George St, The Rocks NSW 2000, Australia",
+         "geometry" : <...>,
+         "name" : "Museum of Contemporary Art Australia",
+         "opening_hours" : <...>,
+         "photos" : [<...>],
+         "rating" : 4.3
+      }
+   ],
+   "debug_log" : {
+      "line" : []
+   },
+   "status" : "OK"
+}

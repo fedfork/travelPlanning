@@ -21,6 +21,6 @@
 * Отобразить общую сумму расходов
 
 ## Видеодемонстрация
-[смотреть] (https://drive.google.com/file/d/1xRxIphfV3R6tZuHfp7LPWVj_qbE_9YCP/view?usp=sharing)
+[смотреть] (https://drive.google.com/file/d/1xRxIphfV3R6tZuHfp7LPWVj_qbE_9YCP/view?usp=sharing) 
 
 
